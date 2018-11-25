@@ -13,6 +13,7 @@ export class MoviesProvider {
 
 	public resultJson;
 	public userLanguage;
+	public movieDetail;
 
 	constructor(private http: HttpClient, private globalization: Globalization) {
 		this.globalization.getPreferredLanguage()
@@ -36,7 +37,12 @@ export class MoviesProvider {
 
 
 	getMovieById(id: number) {
-		
+		console.log(id);
+
+		/*this.http.get("http://api.themoviedb.org/3/movie/" + id + "?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage)
+			.subscribe(data => {
+				this.movieDetail = data;
+		});*/
 	}
 
 }

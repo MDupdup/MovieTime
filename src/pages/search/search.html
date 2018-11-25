@@ -8,17 +8,19 @@
 
 <ion-content padding>
   <ion-list>
-    <div *ngFor="let movie of listMoviesInTheaters(); let i = index">
-          <ion-card>
-              <ion-card-content>
-                  <ion-card-title>
-                  {{movie.title}}
-                  </ion-card-title>
-                  <p>
-                  {{movie.overview}}
-                  </p>
-              </ion-card-content>
-          </ion-card>
+    <div *ngFor="let movie of listMoviesInTheaters();">
+      <a (click)="mProvider.getMovieById(movie.id)" navPush="DetailPage">
+        <ion-card>
+          <ion-card-content>
+            <ion-card-title>
+            {{movie.title}} (of ID {{movie.id}})
+            </ion-card-title>
+            <p>
+            {{movie.overview}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </a>
     </div>
   </ion-list>
 </ion-content>
