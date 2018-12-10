@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MoviesProvider } from '../../providers/movies/movies';
+import { Movie } from '../../models/Movie';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 /**
  * Generated class for the DetailPage page.
@@ -16,10 +18,24 @@ import { MoviesProvider } from '../../providers/movies/movies';
 })
 export class DetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider) {
+    movie: Movie;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, public nativeStorage: NativeStorage) {
 
   }
 
-  
+  ngOnInit() {
+    this.mProvider.getMovieById().subscribe(movie => {
+        this.movie = new Movie(movie['id'], movie['title'], movie['overview'], movie['poster_path']);
+        console.log(this.movie.getTitle(), this.movie.getPosterPath());
+    });
+  }
 
+  public addToFavorites(movie: Movie) {
+    this.nativeStorage.setItem(movie.getId().toString(), {
+        movie: movie
+    }).then(
+        error => console.error("Error inserting to db! (", error, ")") 
+    );
+  }
 }

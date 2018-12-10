@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { MovieApiComponent } from './movie-api/movie-api';
 import { QrCodeScannerComponent } from './qr-code-scanner/qr-code-scanner';
+import { SearchMovieComponent } from './search-movie/search-movie';
 @NgModule({
 	declarations: [MovieApiComponent,
-    QrCodeScannerComponent],
+    QrCodeScannerComponent,
+    SearchMovieComponent],
 	imports: [],
 	exports: [MovieApiComponent,
-    QrCodeScannerComponent]
+    QrCodeScannerComponent,
+    SearchMovieComponent]
 })
 export class ComponentsModule {}

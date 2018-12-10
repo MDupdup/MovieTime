@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Globalization } from '@ionic-native/globalization';
 
+import 'rxjs/add/operator/map';
+
+
 /*
   Generated class for the MoviesProvider provider.
 
@@ -13,9 +16,11 @@ export class MoviesProvider {
 
 	public resultJson;
 	public userLanguage;
-	public movieDetail;
+    public movieDetail;
+    public movieId;
 
 	constructor(private http: HttpClient, private globalization: Globalization) {
+        // Get user device language
 		this.globalization.getPreferredLanguage()
 		.then(res => {
 			this.userLanguage = res;
@@ -24,25 +29,22 @@ export class MoviesProvider {
 		.catch(e => {
 			console.log(e)
 			this.userLanguage = "fr-FR"; // Default language
-		});
-	}
+        });    
+    }
+       
+
+    setMovieId(id: number) {
+        this.movieId = id;
+    }
 
 	listMoviesInTheaters() {
-		this.http.get("https://api.themoviedb.org/3/movie/now_playing?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage)
-			.subscribe(data => {
-				this.resultJson = data["results"];
-		});
-		return this.resultJson;	
-	}
+        return this.http.get("https://api.themoviedb.org/3/movie/now_playing?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage);
+    }
 
 
-	getMovieById(id: number) {
-		console.log(id);
-
-		/*this.http.get("http://api.themoviedb.org/3/movie/" + id + "?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage)
-			.subscribe(data => {
-				this.movieDetail = data;
-		});*/
+	getMovieById() {
+        console.log(this.movieId);
+        return this.http.get("http://api.themoviedb.org/3/movie/" + this.movieId + "?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage)
 	}
 
 }

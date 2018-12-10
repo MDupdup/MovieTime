@@ -14,6 +14,7 @@ import { MoviesProvider } from '../providers/movies/movies';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { Globalization } from '@ionic-native/globalization';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { Globalization } from '@ionic-native/globalization';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MoviesProvider,
-    Globalization
+    Globalization,
+    NativeStorage
   ]
 })
 export class AppModule {}

@@ -4,15 +4,24 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<html *ngIf="movie">
+    <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{mProvider.movieDetail.title}}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{movie.getTitle()}}</ion-title>
+    </ion-navbar>
 
-</ion-header>
+    </ion-header>
 
 
-<ion-content padding>
+    <ion-content padding>
 
-</ion-content>
+        <button color="red" ion-button icon-start round> 
+            Add
+            <ion-icon name="heart"></ion-icon>
+          </button>
+
+        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}"/>
+
+    </ion-content>
+</html>
