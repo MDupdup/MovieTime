@@ -11,14 +11,27 @@ export class FavoritesPage {
 
     favMoviesList: Movie[] = [];
 
+    movie: Movie;
+
   constructor(public navCtrl: NavController, private nativeStorage: NativeStorage) {
 
   }
 
-  ngOnInit() {
-    this.nativeStorage.keys().then((keys) => {
-        this.favMoviesList = keys.map(key => this.nativeStorage.getItem(key));
-    })
+
+  ionViewWillEnter() {
+    this.displayDBItems();
   }
 
+  displayDBItems() {
+    this.nativeStorage.getItem('favorites').then(data => {
+        console.log("bonjour", data.movie);
+        this.favMoviesList.push(new Movie(data.movie.id, data.movie.title, data.movie.overview, data.movie.poster_path, data.movie.release_date, data.movie.vote_average));
+    });
+  }
+
+  clearDB() {
+    this.nativeStorage.clear();
+
+    this.displayDBItems();
+  }
 }

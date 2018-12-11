@@ -14,16 +14,16 @@ export class Movie {
     private voteAvg;
 
 
-    public constructor(id: number, title: string, overview: string, posterPath: string, originalLanguage?: string, releaseDate?: string, genre?: string, runtime?: number, voteAvg?: number) {
+    public constructor(id: number, title: string, overview: string, posterPath: string, releaseDate: string, voteAvg: number, originalLanguage?: string, genre?: string, runtime?: number) {
         this.id = id;
         this.title = title;
         this.overview = overview;
         this.posterPath = posterPath;
+        this.releaseDate = releaseDate;
+        this.voteAvg = voteAvg;
         if(originalLanguage) this.originalLanguage = originalLanguage;
-        if(releaseDate) this.releaseDate = releaseDate;
         if(genre) this.genre = genre;
         if(runtime) this.runtime = runtime;
-        if(voteAvg) this.voteAvg = voteAvg;
     }
 
     public getId(): number {
@@ -41,13 +41,21 @@ export class Movie {
     public getPosterPath(): string {
         return this.posterPath;
     }
+    
+    public getReleaseDate(): string {
+        return this.releaseDate;
+    }
+
+    public getReleaseYear(): string {
+        return this.releaseDate.split("-")[0];
+    }
+
+    public getVoteAvg(): number {
+        return this.voteAvg;
+    }
 
     public getOriginalLanguage(): string {
         return this.originalLanguage;
-    }
-
-    public getReleaseDate(): string {
-        return this.releaseDate;
     }
 
     public getGenre(): string {
@@ -56,9 +64,5 @@ export class Movie {
 
     public getRuntime(): number {
         return this.runtime;
-    }
-
-    public getVoteAvg(): number {
-        return this.voteAvg;
     }
 }

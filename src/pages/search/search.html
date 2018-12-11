@@ -1,28 +1,28 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Search
+        <ion-input type="text" [(ngModel)]="text" (input)="onSearch($event.target.value)"></ion-input>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <div *ngIf="movies">
-        <div *ngFor="let movie of movies">
-            <a (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage">
-                <ion-card>
-                <ion-card-content>
-                    <ion-card-title>
-                        {{movie.getTitle()}}
-                    
-                    </ion-card-title>
+    <ion-searchbar (ionInput)="onSearch($event.target.value)"></ion-searchbar>
+    <ion-list *ngIf="movies">
+            <ion-item *ngFor="let movie of movies">
+                <a (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage" style="color: black; text-decoration: none;">
+                    <ion-thumbnail item-start>
+                        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}">
+                    </ion-thumbnail>
+                    <h2>{{movie.getTitle()}}</h2>
                     <p>
+                        <span *ngIf="movie.getVoteAvg() < 3.5" style="color: red;">{{movie.getVoteAvg()}}/10</span>
+                        <span *ngIf="movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7" style="color: orange;">{{movie.getVoteAvg()}}/10</span> 
+                        <span *ngIf="movie.getVoteAvg() > 7" style="color: green;">{{movie.getVoteAvg()}}/10</span> 
+                        • {{movie.getReleaseYear()}}
                     </p>
-                </ion-card-content>
-                </ion-card>
-            </a>
-        </div>
-    </div>
-  </ion-list>
+                </a>
+            </ion-item>
+        </ion-list>
 </ion-content>
+

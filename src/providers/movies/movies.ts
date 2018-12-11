@@ -43,8 +43,11 @@ export class MoviesProvider {
 
 
 	getMovieById() {
-        console.log(this.movieId);
-        return this.http.get("http://api.themoviedb.org/3/movie/" + this.movieId + "?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage)
-	}
+        return this.http.get("http://api.themoviedb.org/3/movie/" + this.movieId + "?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage);
+    }
+    
+    searchForMovie(name: string) {
+        return this.http.get('https://api.themoviedb.org/3/search/movie?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage + '&query=' + name);
+    }
 
 }

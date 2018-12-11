@@ -4,34 +4,28 @@
   </ion-navbar>
 </ion-header>
 
-<h2>Welcome to MovieTime!</h2>
-<p>
-  This app will be THE app, so go for it and start using your future beloved app!
-</p>
-<p>
-  Take a look at the <code>src/pages/</code> directory to add or change tabs,
-  update any existing page or create new pages.
-</p>
+
 
 <ion-content padding *ngIf="favMoviesList">
+    <a (click)="clearDB">Clear DB</a>
     <div *ngFor="let favMovie of favMoviesList">
         <ion-card>
             <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}"/>
             <ion-card-content>
-            <ion-card-title>
+                <ion-card-title>
                     {{favMovie.getTitle()}}
                 </ion-card-title>
-            <p>
-                {{favMovie.getOverview()}}
-            </p>
+                <p>
+                    {{favMovie.getOverview()}}
+                </p>
             </ion-card-content>
             <ion-row no-padding>
-                <ion-col>
+                <!--<ion-col>
                     {{favMovie.getGenre()}}
                 </ion-col>
                 <ion-col>
-                        {{favMovie.getRuntime()}} min.
-                </ion-col>
+                    {{favMovie.getRuntime()}} min.
+                </ion-col>-->
             </ion-row>
         </ion-card>
     </div>

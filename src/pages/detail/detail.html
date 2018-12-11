@@ -16,12 +16,13 @@
 
     <ion-content padding>
 
-        <button color="red" ion-button icon-start round> 
-            Add
-            <ion-icon name="heart"></ion-icon>
-          </button>
+        <a (click)="addToFavorites(movie)">
+            <button color="red" ion-button icon-start round>
+                <ion-icon name="heart"></ion-icon>
+            </button>
+        </a>
 
-        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}"/>
+        <img width="200px" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}"/>
 
     </ion-content>
 </html>

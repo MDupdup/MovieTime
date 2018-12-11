@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { Globalization } from '@ionic-native/globalization';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    QRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
