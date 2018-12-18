@@ -7,7 +7,6 @@
 
 
 <ion-content padding *ngIf="favMoviesList">
-    <a (click)="clearDB">Clear DB</a>
     <div *ngFor="let favMovie of favMoviesList">
         <ion-card>
             <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}"/>
@@ -15,9 +14,6 @@
                 <ion-card-title>
                     {{favMovie.getTitle()}}
                 </ion-card-title>
-                <p>
-                    {{favMovie.getOverview()}}
-                </p>
             </ion-card-content>
             <ion-row no-padding>
                 <!--<ion-col>

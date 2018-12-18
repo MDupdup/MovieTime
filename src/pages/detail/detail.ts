@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { MoviesProvider } from '../../providers/movies/movies';
 import { Movie } from '../../models/Movie';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { StorageProvider } from '../../providers/storage/storage';
 
 /**
  * Generated class for the DetailPage page.
@@ -20,7 +21,10 @@ export class DetailPage {
 
     movie: Movie;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, public nativeStorage: NativeStorage, private alertPopup: AlertController) {
+    movieListInDB: Movie[] = []
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, private alertPopup: AlertController, private sProvider: StorageProvider) {
 
   }
 
@@ -35,7 +39,7 @@ export class DetailPage {
 
     //console.log(this.nativeStorage.getItem(movie.getId() + ''))
 
-    if (this.nativeStorage.getItem(movie.getId().toString()) === null) {
+    if (movie.getTitle() === "bite") {
 
         const alert = this.alertPopup.create({
             title: 'Erreur !',
@@ -57,11 +61,29 @@ export class DetailPage {
                 {
                     text: 'Oui',
                     handler: () => {
+                        this.sProvider.addMovieToList(movie);
+                        /*this.nativeStorage.getItem('favorites').then(data => {
+                            console.log('movies in detail :', data.movie)
+                            data.movie.forEach(e => {
+                                console.log('details movies in foreach', e);
+                                this.movieListInDB.push(
+                                    new Movie(e.id, e.title, e.overview, e.poster_path, e.release_date, e.vote_average)
+                                )
+                            });
+                        });
+
+                        this.movieListInDB.push(movie);
+
+
+                        this.nativeStorage.clear();
+                        console.log('concou', this.movieListInDB);
+
                         this.nativeStorage.setItem('favorites', {
-                            movie: movie
-                        }).then(
+                            movie: this.movieListInDB
+                        }).then(() => console.log('Successfully added movie in db!'))
+                        .catch(
                             error => console.error("Error inserting to db! (", error, ")") 
-                        );
+                        );*/
                     }
                 }
             ]

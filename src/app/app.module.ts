@@ -16,10 +16,13 @@ import { HttpModule } from '@angular/http';
 import { Globalization } from '@ionic-native/globalization';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { QRCodeModule } from 'angularx-qrcode';
+import { HomePage } from '../pages/home/home';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [
     MyApp,
+    HomePage,
     SearchPage,
     ContactPage,
     FavoritesPage,
@@ -35,6 +38,7 @@ import { QRCodeModule } from 'angularx-qrcode';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HomePage,
     SearchPage,
     ContactPage,
     FavoritesPage,
@@ -46,7 +50,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MoviesProvider,
     Globalization,
-    NativeStorage
+    NativeStorage,
+    StorageProvider
   ]
 })
 export class AppModule {}

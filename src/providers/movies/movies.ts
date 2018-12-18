@@ -27,7 +27,7 @@ export class MoviesProvider {
 			console.log(res);
 		})
 		.catch(e => {
-			console.log(e)
+			console.log(e);
 			this.userLanguage = "fr-FR"; // Default language
         });    
     }

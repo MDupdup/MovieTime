@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { NativeStorage } from '@ionic-native/native-storage';
 import { Movie } from '../../models/Movie';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
   selector: 'page-favorites',
@@ -11,27 +11,38 @@ export class FavoritesPage {
 
     favMoviesList: Movie[] = [];
 
-    movie: Movie;
-
-  constructor(public navCtrl: NavController, private nativeStorage: NativeStorage) {
+  constructor(public navCtrl: NavController, private sProvider: StorageProvider) {
 
   }
+
+    onInit() {
+        this.favMoviesList = this.sProvider.getFavList();
+        console.log("C'est par là");
+    }
 
 
   ionViewWillEnter() {
-    this.displayDBItems();
+    this.favMoviesList = this.sProvider.getFavList();
+
+    console.log("On y arrive");
   }
 
   displayDBItems() {
-    this.nativeStorage.getItem('favorites').then(data => {
-        console.log("bonjour", data.movie);
-        this.favMoviesList.push(new Movie(data.movie.id, data.movie.title, data.movie.overview, data.movie.poster_path, data.movie.release_date, data.movie.vote_average));
-    });
-  }
 
-  clearDB() {
-    this.nativeStorage.clear();
+    console.log('list in fav before', this.favMoviesList);
 
-    this.displayDBItems();
+    this.favMoviesList = this.sProvider.getFavList();
+
+    /*this.nativeStorage.getItem('favorites').then(data => {
+        this.favMoviesList = [];
+        data.forEach(e => {
+            console.log('Le film dans la liste ', e)
+            this.favMoviesList.push(
+                new Movie(e.id, e.title, e.overview, e.poster_path, e.release_date, e.vote_average)
+            );
+        });
+
+        console.log('lolilol:', this.favMoviesList);
+    });*/
   }
 }
