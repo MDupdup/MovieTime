@@ -15,11 +15,16 @@ export class FavoritesPage {
 
   }
 
-    onInit() {
-        this.favMoviesList = this.sProvider.getFavList();
-        console.log("C'est par là");
-    }
+  onInit() {
+      this.favMoviesList = this.sProvider.getFavList();
 
+      console.log("C'est par là");
+  }
+
+
+  ionViewDidLoad() {
+      this.favMoviesList = this.sProvider.getFavList();
+  }
 
   ionViewWillEnter() {
     this.favMoviesList = this.sProvider.getFavList();
@@ -44,5 +49,9 @@ export class FavoritesPage {
 
         console.log('lolilol:', this.favMoviesList);
     });*/
+  }
+
+  reload() {
+    window.location.reload();
   }
 }
