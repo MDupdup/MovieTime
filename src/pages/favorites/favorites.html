@@ -1,29 +1,31 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Mes favoris</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Mes favoris</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 
-<ion-content padding *ngIf="favMoviesList">
-    <div *ngFor="let favMovie of favMoviesList">
-        <ion-card>
-            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}"/>
-            <ion-card-content>
-                <ion-card-title>
-                    {{favMovie.getTitle()}}
-                    {{favMovie.getPosterPath()}}
-                </ion-card-title>
-            </ion-card-content>
-            <ion-row no-padding>
-                <!--<ion-col>
-                    {{favMovie.getGenre()}}
-                </ion-col>
-                <ion-col>
-                    {{favMovie.getRuntime()}} min.
-                </ion-col>-->
-            </ion-row>
-        </ion-card>
-    </div>
+<ion-content padding>
+    <ion-list *ngIf="favMoviesList">
+        <ion-item *ngFor="let favMovie of favMoviesList">
+            <div item-start>
+                <img width="80" height="120" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}">
+                <ion-spinner></ion-spinner>
+            </div>
+            <h2 text-wrap>{{favMovie.getTitle()}}</h2>
+            <p><span [ngClass]="{'good': favMovie.getVoteAvg() > 7, 'average': favMovie.getVoteAvg() >= 3.5 && favMovie.getVoteAvg() <= 7, 'bad': favMovie.getVoteAvg() < 3.5}">{{favMovie.getVoteAvg()}}/10</span>
+                • {{favMovie.getReleaseYear()}}</p>
+            <button ion-button padding (click)="mProvider.setMovieId(favMovie.id)" navPush="DetailPage">
+                En savoir plus
+                <ion-icon name="eye" padding-left></ion-icon>
+            </button>
+            <br>
+            <!-- TODO connect me  -->
+            <button ion-button padding color="danger">
+                Retirer liste
+                <ion-icon name="star" padding-left></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
 </ion-content>

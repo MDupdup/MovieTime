@@ -1,3 +1,23 @@
-page-home {
+//Set a loader inside img poster
+page-favorites div[item-start]{
+    position: relative;
+}
+page-favorites ion-img, page-favorites img {
+    min-width: 80px;
+    min-height: 120px;
+    background: map-get($colors, secondary)!important;
+}
+// .img-loaded + ion-spinner {
+//     display:none;
+// }
+page-favorites ion-spinner{
+    position: absolute;
+    left: calc(50% - 14px);
+    top: calc(50% - 14px);
+    display:none;
+}
 
+//other
+page-favorites ion-spinner * {
+    stroke: map-get($colors, primary)!important;
 }

@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { SearchPage } from '../pages/search/search';
-import { ContactPage } from '../pages/contact/contact';
+import { Movie4TonightPage } from '../pages/movie4Tonight/movie4Tonight';
 import { FavoritesPage } from '../pages/favorites/favorites';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -16,15 +16,14 @@ import { HttpModule } from '@angular/http';
 import { Globalization } from '@ionic-native/globalization';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { QRCodeModule } from 'angularx-qrcode';
-import { HomePage } from '../pages/home/home';
-import { StorageProvider } from '../providers/storage/storage';
+import { IonicImageLoader } from 'ionic-image-loader';
+//import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     SearchPage,
-    ContactPage,
+    Movie4TonightPage,
     FavoritesPage,
     TabsPage
   ],
@@ -33,14 +32,14 @@ import { StorageProvider } from '../providers/storage/storage';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     HttpModule,
-    QRCodeModule
+    QRCodeModule,
+    IonicImageLoader.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     SearchPage,
-    ContactPage,
+    Movie4TonightPage,
     FavoritesPage,
     TabsPage
   ],
@@ -51,7 +50,7 @@ import { StorageProvider } from '../providers/storage/storage';
     MoviesProvider,
     Globalization,
     NativeStorage,
-    StorageProvider
+    //StorageProvider
   ]
 })
 export class AppModule {}
