@@ -55,4 +55,3 @@ The project is started with the regular ionic commands.
 ## Creator
 
 **DUPONT Malo** & **CAUMES Kirian**
-
