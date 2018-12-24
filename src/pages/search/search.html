@@ -8,13 +8,17 @@
 </ion-header>
 
 <ion-content padding>
+    <!-- SearchBar -->
     <div class="search-content">
         <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="Rechercher"></ion-searchbar>
-        <button ion-button padding (click)="openQrScanner()" >
+        <button ion-button padding (click)="openQrScanner()">
             <ion-icon name="qr-scanner"></ion-icon>
         </button>
     </div>
-    
+
+    <!-- <separator></separator>  -->
+
+    <!-- Infos -->
     <div *ngIf="searching">
         <p text-center>Recherche en cours ...</p>
     </div>
@@ -23,21 +27,13 @@
         <p text-center>Aucun résultats</p>
     </div>
 
+    <!-- Content -->
     <ion-list *ngIf="movies">
-        <ion-item *ngFor="let movie of movies">
-            <div item-start>
-                <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}" fallbackUrl="assets/imgs/movie.png"></img-loader>
-                <!-- <ion-spinner></ion-spinner> -->
-            </div>
-            <h2 text-wrap>{{movie.getTitle()}}</h2>
-            <p><span [ngClass]="{'good': movie.getVoteAvg() > 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span>
-                • {{movie.getReleaseYear()}}</p>
-            <button ion-button padding (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage">
-                En savoir plus
-                <ion-icon name="eye" padding-left></ion-icon>
-            </button>
-        </ion-item>
+        <movie-item-list *ngFor="let movie of movies" [movie]="movie" [fav]="false"></movie-item-list>
     </ion-list>
-</ion-content>
 
-<!-- Toute tentative d'utilisé le lazy load de <ion-img></ion-img> ont été infructeuse (pour mettre en place un laodging), de plus de TRES nombreuses sources sur internet affirme que le composant est défectueux... -->
+    <!-- More -->
+    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()">
+        Plus de films
+    </button>
+</ion-content>

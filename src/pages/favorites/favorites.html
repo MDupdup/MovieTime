@@ -10,29 +10,13 @@
 
 
 <ion-content padding>
+    <!-- Infos -->
     <div *ngIf="!favMoviesList || favMoviesList.length === 0">
         <p text-center>Vous n'avez aucun favoris</p>
     </div>
 
+    <!-- Content -->
     <ion-list *ngIf="favMoviesList">
-        <ion-item *ngFor="let favMovie of favMoviesList">
-            <div item-start>
-                <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}" fallbackUrl="assets/imgs/movie.png"></img-loader>
-                <!-- <ion-spinner></ion-spinner> -->
-            </div>
-            <h2 text-wrap>{{favMovie.getTitle()}}</h2>
-            <p><span [ngClass]="{'good': favMovie.getVoteAvg() > 7, 'average': favMovie.getVoteAvg() >= 3.5 && favMovie.getVoteAvg() <= 7, 'bad': favMovie.getVoteAvg() < 3.5}">{{favMovie.getVoteAvg()}}/10</span>
-                • {{favMovie.getReleaseYear()}}</p>
-            <button ion-button padding (click)="mProvider.setMovieId(favMovie.id)" navPush="DetailPage">
-                En savoir plus
-                <ion-icon name="eye" padding-left></ion-icon>
-            </button>
-            <br>
-            <!-- TODO connect me  -->
-            <button ion-button padding color="danger">
-                Retirer liste
-                <ion-icon name="star" padding-left></ion-icon>
-            </button>
-        </ion-item>
+        <movie-item-list *ngFor="let movie of favMoviesList" [movie]="movie" [fav]="true"></movie-item-list>
     </ion-list>
 </ion-content>

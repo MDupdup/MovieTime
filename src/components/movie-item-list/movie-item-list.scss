@@ -1,0 +1,27 @@
+//Set a loader inside img poster
+movie-item-list div[item-start]{
+    position: relative;
+}
+movie-item-list ion-img, movie-item-list img {
+    width: 80px;
+    height: 120px;
+    background: map-get($colors, secondary)!important;
+}
+// .img-loaded + ion-spinner {
+//     display:none;
+// }
+movie-item-list ion-spinner{
+    position: absolute;
+    left: calc(50% - 14px);
+    top: calc(50% - 14px);
+    display:none;
+}
+
+//other
+movie-item-list button.item-button {
+    margin-top: 10px!important;
+}
+
+movie-item-list ion-spinner * {
+    stroke: map-get($colors, primary)!important;
+}

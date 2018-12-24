@@ -18,6 +18,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { MovieItemListComponent } from '../components/movie-item-list/movie-item-list';
+import { SeparatorComponent } from '../components/separator/separator';
 //import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
@@ -26,7 +28,9 @@ import { IonicImageLoader } from 'ionic-image-loader';
     SearchPage,
     Movie4TonightPage,
     FavoritesPage,
-    TabsPage
+    TabsPage,
+    MovieItemListComponent,
+    SeparatorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,31 +1,3 @@
-//Set a loader inside img poster
-page-search div[item-start]{
-    position: relative;
-}
-page-search ion-img, page-search img {
-    width: 80px;
-    height: 120px;
-    background: map-get($colors, secondary)!important;
-}
-// .img-loaded + ion-spinner {
-//     display:none;
-// }
-page-search ion-spinner{
-    position: absolute;
-    left: calc(50% - 14px);
-    top: calc(50% - 14px);
-    display:none;
-}
-
-//other
-page-search button.item-button {
-    margin-top: 10px!important;
-}
-
-page-search ion-spinner * {
-    stroke: map-get($colors, primary)!important;
-}
-
 page-search .search-content{
     display: flex;
     justify-content: center;

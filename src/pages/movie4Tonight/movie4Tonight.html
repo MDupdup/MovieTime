@@ -8,5 +8,38 @@
 </ion-header>
 
 <ion-content padding>
-    <h1>???????????????????????????????????????????????????????????</h1>
+    <!-- SearchBar -->
+    <ion-item>
+        <ion-label>Genre(s)</ion-label>
+        <ion-select [(ngModel)]="category" multiple="true" (ngModelChange)="setCategories(category)">
+            <ion-option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Année</ion-label>
+        <ion-select [(ngModel)]="year" (ngModelChange)="setYear(year)">
+            <ion-option *ngFor="let year of years">{{year}}</ion-option>
+        </ion-select>
+    </ion-item>   
+    
+    <!-- <separator></separator>  -->
+
+    <!-- Infos -->
+    <div *ngIf="searching">
+        <p text-center>Recherche en cours ...</p>
+    </div>
+
+    <div *ngIf="(!movies || movies.length === 0) && !searching">
+        <p text-center>Aucun résultats</p>
+    </div>
+    <!-- Content -->
+    <ion-list *ngIf="movies">
+        <movie-item-list *ngFor="let movie of movies" [movie]="movie" [fav]="false"></movie-item-list>
+    </ion-list>
+    
+    <!-- More -->
+    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()">
+        Plus de films
+    </button>
 </ion-content>

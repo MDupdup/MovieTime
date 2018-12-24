@@ -33,10 +33,11 @@ export class FavoritesPage {
 
         //FIX ME : @MALO Mock to simply test and add style to the list
         this.favMoviesList = [];
-        this.mProvider.listMoviesInTheaters().subscribe(response => {
+        this.mProvider.listMoviesInTheaters(1).subscribe(response => {
             this.favMoviesList = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
+            console.log(this.favMoviesList)
         });
         
     }
