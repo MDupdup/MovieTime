@@ -7,8 +7,13 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="Rechercher"></ion-searchbar>
-
+    <div class="search-content">
+        <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="Rechercher"></ion-searchbar>
+        <button ion-button padding (click)="openQrScanner()" >
+            <ion-icon name="qr-scanner"></ion-icon>
+        </button>
+    </div>
+    
     <div *ngIf="searching">
         <p text-center>Recherche en cours ...</p>
     </div>

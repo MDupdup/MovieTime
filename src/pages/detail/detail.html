@@ -41,26 +41,12 @@
             <p>
                 {{movie.getOverview()}}
             </p>
+            <div class="qr-container">
+                <qrcode qrdata="{{movie.getId()}}" [size]="128" [level]="'M'"></qrcode>
+            </div>
+            
         </ion-card-content>
     </ion-card>
-    <!-- <div item-start>
-        <ion-img width="150" height="120" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}"></ion-img>
-        <ion-spinner></ion-spinner>
-    </div>
-    <h2 text-wrap>{{movie.getTitle()}}</h2>
-    <p><span [ngClass]="{'good': movie.getVoteAvg() > 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span>
-        • {{movie.getReleaseYear()}}</p>
-    <button ion-button padding (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage">
-        En savoir plus
-        <ion-icon name="eye" padding-left></ion-icon>
-    </button> -->
-    <!-- <a (click)="addToFavorites(movie)">
-        <button color="red" ion-button icon-start round>
-            <ion-icon name="heart"></ion-icon>
-        </button>
-    </a> -->
-
-
 
 </ion-content>
 

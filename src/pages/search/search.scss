@@ -25,3 +25,14 @@ page-search button.item-button {
 page-search ion-spinner * {
     stroke: map-get($colors, primary)!important;
 }
+
+page-search .search-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+page-search .search-content button.button-default{
+    margin: 8px 0;
+    padding: 22px 16px;
+}
+

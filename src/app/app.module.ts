@@ -16,6 +16,7 @@ import { HttpModule } from '@angular/http';
 import { Globalization } from '@ionic-native/globalization';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { QRCodeModule } from 'angularx-qrcode';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { IonicImageLoader } from 'ionic-image-loader';
 //import { StorageProvider } from '../providers/storage/storage';
 
@@ -50,6 +51,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     MoviesProvider,
     Globalization,
     NativeStorage,
+    QRScanner,
     //StorageProvider
   ]
 })
