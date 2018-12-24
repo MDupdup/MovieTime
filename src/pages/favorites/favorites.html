@@ -1,17 +1,24 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Mes favoris</ion-title>
+        <ion-title>
+            <ion-icon name="md-star" padding-right></ion-icon>
+            Mes favoris
+        </ion-title>
     </ion-navbar>
 </ion-header>
 
 
 
 <ion-content padding>
+    <div *ngIf="!favMoviesList || favMoviesList.length === 0">
+        <p text-center>Vous n'avez aucun favoris</p>
+    </div>
+
     <ion-list *ngIf="favMoviesList">
         <ion-item *ngFor="let favMovie of favMoviesList">
             <div item-start>
-                <img width="80" height="120" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}">
-                <ion-spinner></ion-spinner>
+                <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}" fallbackUrl="assets/imgs/movie.png"></img-loader>
+                <!-- <ion-spinner></ion-spinner> -->
             </div>
             <h2 text-wrap>{{favMovie.getTitle()}}</h2>
             <p><span [ngClass]="{'good': favMovie.getVoteAvg() > 7, 'average': favMovie.getVoteAvg() >= 3.5 && favMovie.getVoteAvg() <= 7, 'bad': favMovie.getVoteAvg() < 3.5}">{{favMovie.getVoteAvg()}}/10</span>

@@ -31,7 +31,7 @@ export class FavoritesPage {
 
         console.log("On y arrive");
 
-        //FIX ME : Mock to simply add style to the list
+        //FIX ME : @MALO Mock to simply test and add style to the list
         this.favMoviesList = [];
         this.mProvider.listMoviesInTheaters().subscribe(response => {
             this.favMoviesList = response['results'].map(movie =>

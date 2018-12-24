@@ -1,7 +1,8 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            <ion-icon name="md-search" padding-right></ion-icon>Rechercher des films
+            <ion-icon name="md-search" padding-right></ion-icon>
+            Rechercher des films
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -25,8 +26,8 @@
     <ion-list *ngIf="movies">
         <ion-item *ngFor="let movie of movies">
             <div item-start>
-                <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}"></img-loader>
-                <ion-spinner></ion-spinner>
+                <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}" fallbackUrl="assets/imgs/movie.png"></img-loader>
+                <!-- <ion-spinner></ion-spinner> -->
             </div>
             <h2 text-wrap>{{movie.getTitle()}}</h2>
             <p><span [ngClass]="{'good': movie.getVoteAvg() > 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span>

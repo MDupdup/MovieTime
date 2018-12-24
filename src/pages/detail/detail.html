@@ -4,21 +4,23 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<html *ngIf="movie">
 <ion-header>
-
     <ion-navbar>
-        <ion-title>{{movie.getTitle()}}</ion-title>
+        <ion-title>Détail du film</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="has-header">
-    <ion-card>
+    <div *ngIf="!movie">
+        <p text-center> Le film n'as pas été trouvé...</p>
+    </div>
+
+    <ion-card *ngIf="movie">
         <div item-start>
-            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}">
-            <ion-spinner></ion-spinner>
+            <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}" fallbackUrl="assets/imgs/movie.png"></img-loader>
+            <!-- <ion-spinner></ion-spinner> -->
             <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
                 <ion-icon name="star"></ion-icon>
             </button>
@@ -44,10 +46,8 @@
             <div class="qr-container">
                 <qrcode qrdata="{{movie.getId()}}" [size]="128" [level]="'M'"></qrcode>
             </div>
-            
+
         </ion-card-content>
     </ion-card>
 
 </ion-content>
-
-</html>
