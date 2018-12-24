@@ -4,6 +4,7 @@ import { MoviesProvider } from '../../providers/movies/movies';
 import { Movie } from '../../models/Movie';
 import { Category } from '../../models/Category';
 import { CastExpr } from '@angular/compiler';
+import { eachLangs } from '../../assets/langs'
 
 @Component({
     selector: 'page-movie4Tonight',
@@ -14,8 +15,10 @@ export class Movie4TonightPage {
     movies = [];
     categories;
     years;
+    langs;
     selectedCategories;
     selectedYear;
+    selectedLang;
     
     page = 1
     noMoreMovies = false
@@ -33,12 +36,14 @@ export class Movie4TonightPage {
         });
         //Setting years  
         for (let i = 2019; i > 1900; i--) this.years.push(i);
+        //Setting langs  
+        this.langs = eachLangs;
     }
 
     public searchMovies() {
         this.searching = true
 
-        this.mProvider.complexeSearchForMovie(this.selectedYear, this.selectedCategories, this.page).subscribe(response => {
+        this.mProvider.complexeSearchForMovie(this.selectedYear, this.selectedCategories, this.selectedLang, this.page).subscribe(response => {
             let newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
@@ -61,6 +66,12 @@ export class Movie4TonightPage {
 
     public setYear(year: number) {
         this.selectedYear = year
+        this.movies = []
+        this.searchMovies()
+    }
+
+    public setLangs(lang: [String]) {
+        this.selectedLang = lang
         this.movies = []
         this.searchMovies()
     }

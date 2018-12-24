@@ -21,8 +21,15 @@
         <ion-select [(ngModel)]="year" (ngModelChange)="setYear(year)">
             <ion-option *ngFor="let year of years">{{year}}</ion-option>
         </ion-select>
-    </ion-item>   
-    
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Langue(s) d'origine(s)</ion-label>
+        <ion-select [(ngModel)]="lang" (ngModelChange)="setLangs(lang)" multiple="true" >
+            <ion-option *ngFor="let lang of langs" value="{{lang.code}}">{{lang.name}}</ion-option>
+        </ion-select>
+    </ion-item>
+
     <!-- <separator></separator>  -->
 
     <!-- Infos -->
@@ -37,7 +44,7 @@
     <ion-list *ngIf="movies">
         <movie-item-list *ngFor="let movie of movies" [movie]="movie" [fav]="false"></movie-item-list>
     </ion-list>
-    
+
     <!-- More -->
     <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()">
         Plus de films
