@@ -4,25 +4,50 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<html *ngIf="movie">
-    <ion-header>
-
+<ion-header>
     <ion-navbar>
-        <ion-title>{{movie.getTitle()}}</ion-title>
+        <ion-title>Détail du film</ion-title>
     </ion-navbar>
 
-    </ion-header>
+</ion-header>
 
 
-    <ion-content padding>
+<ion-content padding class="has-header">
+    <div *ngIf="!movie">
+        <p text-center> Le film n'as pas été trouvé...</p>
+    </div>
 
-        <a (click)="addToFavorites(movie)">
-            <button color="red" ion-button icon-start round>
-                <ion-icon name="heart"></ion-icon>
+    <ion-card *ngIf="movie">
+        <div item-start>
+            <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}" fallbackUrl="assets/imgs/movie.png"></img-loader>
+            <!-- <ion-spinner></ion-spinner> -->
+            <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
+                <ion-icon name="star"></ion-icon>
             </button>
-        </a>
+        </div>
+        <ion-card-content>
+            <ion-card-title>
+                {{movie.getTitle()}}
+                <ion-badge color="light"><span [ngClass]="{'good': movie.getVoteAvg() > 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span></ion-badge>
+            </ion-card-title>
+            <span *ngFor="let genre of movie.getGenre()">
+                <ion-badge color="primary">{{genre.name}}</ion-badge>
+            </span>
+            <br>
 
-        <img width="200px" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}"/>
+            <ion-badge color="danger">{{movie.getReleaseDate()}}</ion-badge>
+            <ion-badge color="danger">{{movie.getRuntime()}}</ion-badge>
+            <br>
+            <br>
+            <h2>Synopsis : </h2>
+            <p>
+                {{movie.getOverview()}}
+            </p>
+            <div class="qr-container">
+                <qrcode qrdata="{{movie.getId()}}" [size]="128" [level]="'M'"></qrcode>
+            </div>
 
-    </ion-content>
-</html>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

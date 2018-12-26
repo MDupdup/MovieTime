@@ -1,28 +1,39 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-        <ion-input type="text" [(ngModel)]="text" (input)="onSearch($event.target.value)"></ion-input>
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon name="md-search" padding-right></ion-icon>
+            Rechercher des films
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-searchbar (ionInput)="onSearch($event.target.value)"></ion-searchbar>
-    <ion-list *ngIf="movies">
-            <ion-item *ngFor="let movie of movies">
-                <a (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage" style="color: black; text-decoration: none;">
-                    <ion-thumbnail item-start>
-                        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}">
-                    </ion-thumbnail>
-                    <h2>{{movie.getTitle()}}</h2>
-                    <p>
-                        <span *ngIf="movie.getVoteAvg() < 3.5" style="color: red;">{{movie.getVoteAvg()}}/10</span>
-                        <span *ngIf="movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7" style="color: orange;">{{movie.getVoteAvg()}}/10</span> 
-                        <span *ngIf="movie.getVoteAvg() > 7" style="color: green;">{{movie.getVoteAvg()}}/10</span> 
-                        • {{movie.getReleaseYear()}}
-                    </p>
-                </a>
-            </ion-item>
-        </ion-list>
-</ion-content>
+    <!-- SearchBar -->
+    <div class="search-content">
+        <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="Rechercher"></ion-searchbar>
+        <button ion-button padding (click)="openQrScanner()">
+            <ion-icon name="qr-scanner"></ion-icon>
+        </button>
+    </div>
 
+    <!-- <separator></separator>  -->
+
+    <!-- Infos -->
+    <div *ngIf="searching">
+        <p text-center>Recherche en cours ...</p>
+    </div>
+
+    <div *ngIf="(!movies || movies.length === 0) && !searching">
+        <p text-center>Aucun résultats</p>
+    </div>
+
+    <!-- Content -->
+    <ion-list *ngIf="movies">
+        <movie-item-list *ngFor="let movie of movies" [movie]="movie" [fav]="false"></movie-item-list>
+    </ion-list>
+
+    <!-- More -->
+    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()">
+        Plus de films
+    </button>
+</ion-content>

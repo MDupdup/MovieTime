@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Globalization } from '@ionic-native/globalization';
 
 import 'rxjs/add/operator/map';
+import { Category } from '../../models/Category';
 
 
 /*
@@ -30,24 +31,35 @@ export class MoviesProvider {
 			console.log(e);
 			this.userLanguage = "fr-FR"; // Default language
         });    
-    }
-       
+    }       
 
     setMovieId(id: number) {
         this.movieId = id;
     }
 
-	listMoviesInTheaters() {
-        return this.http.get("https://api.themoviedb.org/3/movie/now_playing?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage);
+	listMoviesInTheaters(page) {
+        return this.http.get("https://api.themoviedb.org/3/movie/now_playing?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage + '&page=' + page);
     }
-
 
 	getMovieById() {
         return this.http.get("http://api.themoviedb.org/3/movie/" + this.movieId + "?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=" + this.userLanguage);
     }
     
-    searchForMovie(name: string) {
-        return this.http.get('https://api.themoviedb.org/3/search/movie?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage + '&query=' + name);
+    searchForMovie(name: string, page: number) {
+        return this.http.get('https://api.themoviedb.org/3/search/movie?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage + '&query=' + name + '&page=' + page);
+    }
+
+    getCategory(){
+        return this.http.get('https://api.themoviedb.org/3/genre/movie/list?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage);
+    }
+
+    complexeSearchForMovie(year: number, categories: [number], langs: [String], page: number) {
+        let myUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage + '&sort_by=popularity.desc&page=' + page;
+        myUrl += year ? '&primary_release_year=' + year : ''
+        myUrl += categories && categories.length ? '&with_genres=' + categories.toString() : ''
+        myUrl += langs && langs.length ? '&with_original_language=' + langs.toString() : ''
+        console.log(myUrl)
+        return this.http.get(myUrl);
     }
 
 }

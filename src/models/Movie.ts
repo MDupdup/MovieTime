@@ -14,7 +14,7 @@ export class Movie {
     private voteAvg;
 
 
-    public constructor(id: number, title: string, overview: string, posterPath: string, releaseDate: string, voteAvg: number, originalLanguage?: string, genre?: string, runtime?: number) {
+    public constructor(id: number, title: string, overview: string, posterPath: string, releaseDate: string, voteAvg: number, originalLanguage?: string, genre?: Array<Object>, runtime?: number) {
         this.id = id;
         this.title = title;
         this.overview = overview;
@@ -43,7 +43,7 @@ export class Movie {
     }
     
     public getReleaseDate(): string {
-        return this.releaseDate;
+        return new Date(this.releaseDate).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     public getReleaseYear(): string {
@@ -62,7 +62,7 @@ export class Movie {
         return this.genre;
     }
 
-    public getRuntime(): number {
-        return this.runtime;
+    public getRuntime(): string {
+        return Math.floor(this.runtime / 60)+"H"+this.runtime % 60;
     }
 }

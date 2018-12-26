@@ -1,29 +1,22 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Mes favoris</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon name="md-star" padding-right></ion-icon>
+            Mes favoris
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 
-<ion-content padding *ngIf="favMoviesList">
-    <div *ngFor="let favMovie of favMoviesList">
-        <ion-card>
-            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{favMovie.getPosterPath()}}"/>
-            <ion-card-content>
-                <ion-card-title>
-                    {{favMovie.getTitle()}}
-                    {{favMovie.getPosterPath()}}
-                </ion-card-title>
-            </ion-card-content>
-            <ion-row no-padding>
-                <!--<ion-col>
-                    {{favMovie.getGenre()}}
-                </ion-col>
-                <ion-col>
-                    {{favMovie.getRuntime()}} min.
-                </ion-col>-->
-            </ion-row>
-        </ion-card>
+<ion-content padding>
+    <!-- Infos -->
+    <div *ngIf="!favMoviesList || favMoviesList.length === 0">
+        <p text-center>Vous n'avez aucun favoris</p>
     </div>
+
+    <!-- Content -->
+    <ion-list *ngIf="favMoviesList">
+        <movie-item-list *ngFor="let movie of favMoviesList" [movie]="movie" [fav]="true"></movie-item-list>
+    </ion-list>
 </ion-content>

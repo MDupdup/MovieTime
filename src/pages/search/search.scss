@@ -1,3 +1,10 @@
-page-about {
-
+page-search .search-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
+page-search .search-content button.button-default{
+    margin: 8px 0;
+    padding: 22px 16px;
+}
+

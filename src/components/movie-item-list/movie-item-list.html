@@ -1,0 +1,20 @@
+<ion-item>
+    <div item-start>
+        <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}"
+            fallbackUrl="assets/imgs/movie.png"></img-loader>
+        <!-- <ion-spinner></ion-spinner> -->
+    </div>
+    <h2 text-wrap>{{movie.getTitle()}}</h2>
+    <p><span [ngClass]="{'good': movie.getVoteAvg() > 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span>
+        • {{movie.getReleaseYear()}}</p>
+    <button ion-button padding (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage">
+        En savoir plus
+        <ion-icon name="eye" padding-left></ion-icon>
+    </button>
+    <br>
+    <!-- TODO connect me  -->
+    <button ion-button padding color="danger" *ngIf="fav">
+        Retirer liste
+        <ion-icon name="star" padding-left></ion-icon>
+    </button>
+</ion-item>
