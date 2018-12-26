@@ -14,12 +14,12 @@
 
 <ion-content padding class="has-header">
     <div *ngIf="!movie">
-        <p text-center> Le film n'as pas été trouvé...</p>
+        <p text-center> Le film n'a pas été trouvé...</p>
     </div>
 
     <ion-card *ngIf="movie">
         <div item-start>
-            <img-loader spinner="true" useImg src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}" fallbackUrl="assets/imgs/movie.png"></img-loader>
+            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}">
             <!-- <ion-spinner></ion-spinner> -->
             <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
                 <ion-icon name="star"></ion-icon>

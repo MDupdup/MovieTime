@@ -88,3 +88,23 @@ $colors: (
 @import "noto-sans";
 
 $toolbar-background: map-get($colors, primary);
+
+// ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+//   background: transparent none !important; 
+// }
+
+// .moviehider {
+//   background-position: initial;
+//     background-size: initial;
+//     background-repeat: initial;
+//     background-attachment: initial;
+//     background-origin: initial;
+//     background-clip: initial;
+//     background-color: transparent;
+//     opacity: 0;
+// }
+
+ion-app.cameraView ion-nav{opacity:0}
+ion-app.cameraView,ion-app.cameraView ion-content,ion-app.cameraView .nav-decor,{
+  background: transparent url("../../assets/imgs/camera_overlay.png") !important;
+  background-size: 100% 100% !important;}

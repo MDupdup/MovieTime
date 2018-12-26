@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { Movie } from '../../models/Movie';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { Platform } from 'ionic-angular';
 
 @Component({
     selector: 'page-search',
@@ -17,7 +18,8 @@ export class SearchPage implements OnInit {
     nresults;
     searching;
 
-    constructor(public navCtrl: NavController, public mProvider: MoviesProvider, public qrScanner: QRScanner) {
+    constructor(private platform: Platform, public navCtrl: NavController, public mProvider: MoviesProvider, public qrScanner: QRScanner) {
+       
     }
 
     public ngOnInit() {
@@ -75,28 +77,23 @@ export class SearchPage implements OnInit {
 
     }
 
-    private openQrScanner() {
-        console.log('WAOU')
+    public openQrScanner() {
         this.qrScanner.prepare()
             .then((status: QRScannerStatus) => {
                 if (status.authorized) {
-                    // camera permission was granted
-                    // start scanning
+                    this.qrScanner.show()
+                    window.document.querySelector('ion-app').classList.add('cameraView');
+
                     let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-                        console.log('Scanned something', text);
-
-                        //TODO => @MALO to be tested , cause i'm still unable to install the app on my phone...
-                        this.mProvider.setMovieId(parseInt(text))
                         this.navCtrl.push("DetailPage")
+                        this.mProvider.setMovieId(parseInt(text))
 
-                        this.qrScanner.hide(); // hide camera preview
-                        scanSub.unsubscribe(); // stop scanning
+                        this.qrScanner.hide(); 
+                        scanSub.unsubscribe(); 
+                        window.document.querySelector('ion-app').classList.remove('cameraView');
                     });
-
                 } else if (status.denied) {
                     // camera permission was permanently denied
-                    // you must use QRScanner.openSettings() method to guide the user to the settings page
-                    // then they can grant the permission from there
                 } else {
                     // permission was denied, but not permanently. You can ask for permission again at a later time.
                 }
