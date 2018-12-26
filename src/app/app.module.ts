@@ -22,45 +22,43 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { MovieItemListComponent } from '../components/movie-item-list/movie-item-list';
 import { SeparatorComponent } from '../components/separator/separator';
 //import { StorageProvider } from '../providers/storage/storage';
-import { QrCodeScannerComponent } from '../components/qr-code-scanner/qr-code-scanner';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    SearchPage,
-    Movie4TonightPage,
-    FavoritesPage,
-    TabsPage,
-    MovieItemListComponent,
-    SeparatorComponent,
-    QrCodeScannerComponent
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-    HttpClientModule,
-    HttpModule,
-    QRCodeModule,
-    IonicImageLoader.forRoot()
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    SearchPage,
-    Movie4TonightPage,
-    FavoritesPage,
-    TabsPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MoviesProvider,
-    Globalization,
-    NativeStorage,
-    QRScanner,
-    Camera,
-    //StorageProvider
-  ]
+    declarations: [
+        MyApp,
+        SearchPage,
+        Movie4TonightPage,
+        FavoritesPage,
+        TabsPage,
+        MovieItemListComponent,
+        SeparatorComponent
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(MyApp),
+        HttpClientModule,
+        HttpModule,
+        QRCodeModule,
+        IonicImageLoader.forRoot()
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        SearchPage,
+        Movie4TonightPage,
+        FavoritesPage,
+        TabsPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        { provide: ErrorHandler, useClass: IonicErrorHandler },
+        MoviesProvider,
+        Globalization,
+        NativeStorage,
+        QRScanner,
+        Camera,
+        //StorageProvider
+    ]
 })
-export class AppModule {}
+export class AppModule { }

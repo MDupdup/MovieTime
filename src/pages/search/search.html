@@ -11,7 +11,7 @@
     <!-- SearchBar -->
     <div class="search-content">
         <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="Rechercher"></ion-searchbar>
-        <button ion-button padding (click)="openQrScanner()">
+        <button ion-button padding navPush="QrscannerPage">
             <ion-icon name="qr-scanner"></ion-icon>
         </button>
     </div>

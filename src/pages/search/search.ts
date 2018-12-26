@@ -18,7 +18,7 @@ export class SearchPage implements OnInit {
     nresults;
     searching;
 
-    constructor(private platform: Platform, public navCtrl: NavController, public mProvider: MoviesProvider, public qrScanner: QRScanner) {
+    constructor(public navCtrl: NavController, public mProvider: MoviesProvider, public qrScanner: QRScanner) {
        
     }
 
@@ -74,31 +74,5 @@ export class SearchPage implements OnInit {
         } else {
             this.getMoviesInTheaters()
         }
-
     }
-
-    public openQrScanner() {
-        this.qrScanner.prepare()
-            .then((status: QRScannerStatus) => {
-                if (status.authorized) {
-                    this.qrScanner.show()
-                    window.document.querySelector('ion-app').classList.add('cameraView');
-
-                    let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-                        this.navCtrl.push("DetailPage")
-                        this.mProvider.setMovieId(parseInt(text))
-
-                        this.qrScanner.hide(); 
-                        scanSub.unsubscribe(); 
-                        window.document.querySelector('ion-app').classList.remove('cameraView');
-                    });
-                } else if (status.denied) {
-                    // camera permission was permanently denied
-                } else {
-                    // permission was denied, but not permanently. You can ask for permission again at a later time.
-                }
-            })
-            .catch((e: any) => console.log('Error is', e));
-    }
-
 }

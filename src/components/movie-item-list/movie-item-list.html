@@ -4,7 +4,7 @@
         <!-- <ion-spinner></ion-spinner> -->
     </div>
     <h2 text-wrap>{{movie.getTitle()}}</h2>
-    <p><span [ngClass]="{'good': movie.getVoteAvg() > 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span>
+    <p><span [ngClass]="{'good': movie.getVoteAvg() >= 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() < 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span>
         • {{movie.getReleaseYear()}}</p>
     <button ion-button padding (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage">
         En savoir plus
