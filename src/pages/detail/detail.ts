@@ -32,9 +32,8 @@ export class DetailPage {
     }
 
     public addToFavorites(movie: Movie) {
-        //console.log(this.nativeStorage.getItem(movie.getId() + ''))
-        let yolo = false
-        if (/*this.sProvider.getFavList().find(x => x.getId() === movie.getId()) !== undefined*/ yolo) {
+        
+        if (this.sProvider.isMovieInDb(movie)) {
             const alert = this.alertPopup.create({
                 title: 'Erreur !',
                 subTitle: 'Le film <span style="font-weight: bold;">' + movie.getTitle() + '</span> est déjà dans votre liste de favoris !',

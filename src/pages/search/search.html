@@ -7,7 +7,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <!-- SearchBar -->
     <div class="search-content">
         <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="Rechercher"></ion-searchbar>
@@ -33,7 +33,7 @@
     </ion-list>
 
     <!-- More -->
-    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()">
+    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()" class="moremovie">
         Plus de films
     </button>
 </ion-content>

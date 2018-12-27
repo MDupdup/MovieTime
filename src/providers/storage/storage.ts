@@ -59,6 +59,10 @@ export class StorageProvider {
         //console.log("Successfully deleted ", deletedElem);
     }
 
+    isMovieInDb(movie: Movie) {
+        return this.favList.find(x => x.getId() === movie.getId())
+    }
+
     clearDB() {
         this.nativeStorage.clear();
     }

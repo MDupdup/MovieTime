@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content padding class="has-header">
+<ion-content class="has-header">
     <!-- Infos -->
     <div *ngIf="searching">
         <p text-center>Recherche en cours ...</p>
@@ -25,7 +25,7 @@
     <!-- Content -->
     <ion-card *ngIf="movie">
         <div item-start>
-            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}">
+            <img src="{{movie.getPosterPath()}}" onError="src ='../assets/imgs/movie.png'">
             <!-- <ion-spinner></ion-spinner> -->
             <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
                 <ion-icon name="star"></ion-icon>

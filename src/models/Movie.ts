@@ -39,7 +39,7 @@ export class Movie {
     }
 
     public getPosterPath(): string {
-        return this.posterPath;
+        return "https://image.tmdb.org/t/p/w600_and_h900_bestv2"+this.posterPath;
     }
     
     public getReleaseDate(): string {

@@ -1,6 +1,6 @@
 <ion-item>
     <div item-start>
-        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{movie.getPosterPath()}}">
+        <img src="{{movie.getPosterPath()}}" onError="src ='../assets/imgs/movie.png'">
         <!-- <ion-spinner></ion-spinner> -->
     </div>
     <h2 text-wrap>{{movie.getTitle()}}</h2>

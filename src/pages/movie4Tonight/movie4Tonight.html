@@ -7,7 +7,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <!-- SearchBar -->
     <ion-item>
         <ion-label>Genre(s)</ion-label>
@@ -46,7 +46,7 @@
     </ion-list>
 
     <!-- More -->
-    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()">
+    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()" class="moremovie">
         Plus de films
     </button>
 </ion-content>
