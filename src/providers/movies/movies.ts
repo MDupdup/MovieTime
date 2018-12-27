@@ -24,7 +24,7 @@ export class MoviesProvider {
         // Get user device language
 		this.globalization.getPreferredLanguage()
 		.then(res => {
-			this.userLanguage = res;
+			this.userLanguage = res.value;
 			console.log(res);
 		})
 		.catch(e => {
