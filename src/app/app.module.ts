@@ -14,6 +14,7 @@ import { MoviesProvider } from '../providers/movies/movies';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { Globalization } from '@ionic-native/globalization';
+import { Camera } from '@ionic-native/camera';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QRScanner } from '@ionic-native/qr-scanner';
@@ -56,7 +57,8 @@ import { StorageProvider } from '../providers/storage/storage';
     Globalization,
     NativeStorage,
     QRScanner,
+    Camera,
     StorageProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

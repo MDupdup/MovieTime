@@ -17,67 +17,17 @@ import { StorageProvider } from '../../providers/storage/storage';
     templateUrl: 'detail.html',
 })
 export class DetailPage {
+    searching;
     movie: Movie;
     movieListInDB: Movie[] = []
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, private alertPopup: AlertController, private sProvider: StorageProvider) { }
 
     ngOnInit() {
-        // let tempMovie = {
-        //     adult: false,
-        //     backdrop_path: "/5A2bMlLfJrAfX9bqAibOL2gCruF.jpg",
-        //     belongs_to_collection: null,
-        //     budget: 160000000,
-        //     genres: [
-        //         { id: 28, name: "Action" },
-        //         { id: 14, name: "Fantastique" },
-        //         { id: 878, name: "Science-Fiction" },
-        //         { id: 12, name: "Aventure" }
-        //     ],
-        //     homepage: "http://www.aquamanmovie.com",
-        //     id: 297802,
-        //     imdb_id: "tt1477834",
-        //     original_language: "en",
-        //     original_title: "Aquaman",
-        //     overview: "Personnage légendaire depuis 70 ans, Aquaman est le Roi des Sept Mers, régnant à contrecœur sur Atlantis. Pris en étau entre les Terriens qui détruisent constamment la mer et les habitants d'Atlantis prêts à se révolter, Aquaman doit protéger la planète tout entière…",
-        //     popularity: 616.683,
-        //     poster_path: "/fBfrd2GPTawZjxaBt63zDa2t5hL.jpg",
-        //     production_companies: [
-        //         { id: 429, logo_path: "/2Tc1P3Ac8M479naPp1kYT3izLS5.png", name: "DC Comics", origin_country: "US" }
-        //     ],
-        //     production_countries: [
-        //         { iso_3166_1: "AU", name: "Australia" },
-        //         { iso_3166_1: "US", name: "United States of America" }
-        //     ],
-        //     release_date: "2018-12-07",
-        //     revenue: 364800000,
-        //     runtime: 143,
-        //     spoken_languages: [
-        //         { iso_639_1: "en", name: "English" }
-        //     ],
-        //     status: "Released",
-        //     tagline: "",
-        //     title: "Aquaman",
-        //     video: false,
-        //     vote_average: 7,
-        //     vote_count: 636
-        // }
-        // this.movie = 
-        //     new Movie(
-        //         tempMovie['id'], 
-        //         tempMovie['title'], 
-        //         tempMovie['overview'], 
-        //         tempMovie['poster_path'], 
-        //         tempMovie['release_date'], 
-        //         tempMovie['vote_average'],
-        //         tempMovie['original_language'],
-        //         tempMovie['genres'], 
-        //         tempMovie['runtime']
-        //     );
-        //     console.log(this.movie)
+        this.searching = true
         this.mProvider.getMovieById().subscribe(movie => {
             this.movie = new Movie(movie['id'], movie['title'], movie['overview'], movie['poster_path'], movie['release_date'], movie['vote_average'], movie['original_language'], movie['genres'], movie['runtime']);
-            console.log(this.movie.getTitle(), this.movie.getPosterPath());
+            this.searching = false
         });
     }
 

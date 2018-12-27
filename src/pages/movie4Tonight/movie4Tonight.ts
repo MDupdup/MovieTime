@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Provider } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { Movie } from '../../models/Movie';
@@ -14,17 +14,16 @@ export class Movie4TonightPage {
     searching;
     movies = [];
     categories;
-    years;
+    years = [];
     langs;
     selectedCategories;
     selectedYear;
     selectedLang;
-    
+
     page = 1
     noMoreMovies = false
 
     constructor(public navCtrl: NavController, public mProvider: MoviesProvider) {
-        this.years = []
     }
 
     public ngOnInit() {
