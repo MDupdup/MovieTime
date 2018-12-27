@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, NavController } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { SearchPage } from '../pages/search/search';
@@ -21,44 +21,45 @@ import { QRScanner } from '@ionic-native/qr-scanner';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MovieItemListComponent } from '../components/movie-item-list/movie-item-list';
 import { SeparatorComponent } from '../components/separator/separator';
-//import { StorageProvider } from '../providers/storage/storage';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
-    declarations: [
-        MyApp,
-        SearchPage,
-        Movie4TonightPage,
-        FavoritesPage,
-        TabsPage,
-        MovieItemListComponent,
-        SeparatorComponent
-    ],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(MyApp),
-        HttpClientModule,
-        HttpModule,
-        QRCodeModule,
-        IonicImageLoader.forRoot()
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [
-        MyApp,
-        SearchPage,
-        Movie4TonightPage,
-        FavoritesPage,
-        TabsPage
-    ],
-    providers: [
-        StatusBar,
-        SplashScreen,
-        { provide: ErrorHandler, useClass: IonicErrorHandler },
-        MoviesProvider,
-        Globalization,
-        NativeStorage,
-        QRScanner,
-        Camera,
-        //StorageProvider
-    ]
+  declarations: [
+    MyApp,
+    SearchPage,
+    Movie4TonightPage,
+    FavoritesPage,
+    TabsPage,
+    MovieItemListComponent,
+    SeparatorComponent
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    HttpModule,
+    QRCodeModule,
+    IonicImageLoader.forRoot()
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    SearchPage,
+    Movie4TonightPage,
+    FavoritesPage,
+    TabsPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MoviesProvider,
+    Globalization,
+    NativeStorage,
+    QRScanner,
+    Camera,
+    StorageProvider,
+    FavoritesPage
+  ]
 })
 export class AppModule { }

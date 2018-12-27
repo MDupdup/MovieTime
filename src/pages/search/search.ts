@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { Movie } from '../../models/Movie';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { StorageProvider } from '../../providers/storage/storage';
 import { Platform } from 'ionic-angular';
 
 @Component({
@@ -18,7 +19,7 @@ export class SearchPage implements OnInit {
     nresults;
     searching;
 
-    constructor(public navCtrl: NavController, public mProvider: MoviesProvider, public qrScanner: QRScanner) {
+    constructor(public mProvider: MoviesProvider, public qrScanner: QRScanner) {
        
     }
 

@@ -11,8 +11,8 @@
         <ion-icon name="eye" padding-left></ion-icon>
     </button>
     <br>
-    <!-- TODO connect me  -->
-    <button ion-button padding color="danger" *ngIf="fav">
+    <!-- TODO connect me -->
+    <button ion-button padding (click)="favs.deleteMovieFromList(movie)" color="danger" *ngIf="fav">
         Retirer liste
         <ion-icon name="star" padding-left></ion-icon>
     </button>
