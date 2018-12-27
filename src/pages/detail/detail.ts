@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { Movie } from '../../models/Movie';
-import { NativeStorage } from '@ionic-native/native-storage';
-//import { StorageProvider } from '../../providers/storage/storage';
+import { StorageProvider } from '../../providers/storage/storage';
 
 /**
  * Generated class for the DetailPage page.
@@ -21,7 +20,7 @@ export class DetailPage {
     movie: Movie;
     movieListInDB: Movie[] = []
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, private alertPopup: AlertController /*, private sProvider: StorageProvider*/) { }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, private alertPopup: AlertController, private sProvider: StorageProvider) { }
 
     ngOnInit() {
         // let tempMovie = {
@@ -103,7 +102,8 @@ export class DetailPage {
                     {
                         text: 'Oui',
                         handler: () => {
-                            //this.sProvider.addMovieToList(movie);
+                            console.log("Quoi", movie)
+                            this.sProvider.addMovieToList(movie);
                             /*this.nativeStorage.getItem('favorites').then(data => {
                                 console.log('movies in detail :', data.movie)
                                 data.movie.forEach(e => {

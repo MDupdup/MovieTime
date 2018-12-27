@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { Movie } from '../../models/Movie';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
     selector: 'page-search',
@@ -75,7 +76,7 @@ export class SearchPage implements OnInit {
 
     }
 
-    private openQrScanner() {
+    public openQrScanner() {
         console.log('WAOU')
         this.qrScanner.prepare()
             .then((status: QRScannerStatus) => {

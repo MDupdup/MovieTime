@@ -16,11 +16,11 @@ import { HttpModule } from '@angular/http';
 import { Globalization } from '@ionic-native/globalization';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { QRCodeModule } from 'angularx-qrcode';
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { QRScanner } from '@ionic-native/qr-scanner';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MovieItemListComponent } from '../components/movie-item-list/movie-item-list';
 import { SeparatorComponent } from '../components/separator/separator';
-//import { StorageProvider } from '../providers/storage/storage';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import { SeparatorComponent } from '../components/separator/separator';
     Globalization,
     NativeStorage,
     QRScanner,
-    //StorageProvider
+    StorageProvider
   ]
 })
 export class AppModule {}

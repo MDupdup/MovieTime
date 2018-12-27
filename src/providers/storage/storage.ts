@@ -25,8 +25,7 @@ export class StorageProvider {
         this.nativeStorage.getItem('favorites')
         .then(data => {
             this.favList = data.movies.map(e => {
-                console.log(e.title);
-                return new Movie(e.id, e.title, e.overview, e.poster_path, e.release_date, e.vote_average);
+                return new Movie(e.id, e.title, e.overview, e.posterPath, e.releaseDate, e.voteAvg);
             });
         })
         .catch(err => {
@@ -43,10 +42,22 @@ export class StorageProvider {
         
         this.favList.push(movie)
 
+        console.log("Hein", movie);
+
         this.nativeStorage.setItem('favorites', {
             movies: this.favList
         }).then(() => console.log(movie.getTitle(), "successfully stored in the db!"))
           .catch(err => console.error('Error setting the movie', movie.getTitle(), 'in the db! (', err, ')'));
+    }
+
+    deleteMovieFromList(id: any) {
+        let movieToDelete = this.favList.findIndex(x => x.getId() === id);
+
+        let deletedElem = this.favList.splice(movieToDelete, 1);
+
+        this.setFavList(this.favList);
+
+        console.log("Successfully deleted ", deletedElem);
     }
 
     clearDB() {
