@@ -13,7 +13,7 @@ export class StorageProvider {
 
     favList: Movie[] = [];
 
-    constructor(public nativeStorage: NativeStorage) {}
+    constructor(public nativeStorage: NativeStorage) { }
 
     setFavList(movieList: Movie[]) {
         this.nativeStorage.setItem('favorites', {
@@ -21,33 +21,32 @@ export class StorageProvider {
         });
     }
 
-    getFavList(): Movie[] {
-        this.nativeStorage.getItem('favorites')
-        .then(data => {
-            this.favList = data.movies.map(e => {
-                return new Movie(e.id, e.title, e.overview, e.posterPath, e.releaseDate, e.voteAvg);
-            });
-        })
-        .catch(err => {
-            console.error('Excuse me what the fuck (', err, ')');
-        });
+    async getFavList() {
+        //console.log('BEFORE', this.favList);
+        await this.nativeStorage.getItem('favorites')
+            .then(data => {
+                this.favList = data.movies.map(e => {
+                    return new Movie(e.id, e.title, e.overview, e.posterPath, e.releaseDate, e.voteAvg);
+                });
+            })
+            .catch(err => {
+                console.error('Excuse me what the fuck (', err, ')');
+            });;
 
-        console.log('Bonjour tout le monde', this.favList);
-        
+        //console.log('AFTER', this.favList);
+
         return this.favList;
     }
 
     addMovieToList(movie: Movie) {
-        this.getFavList();
-        
         this.favList.push(movie)
 
-        console.log("Hein", movie);
+        //console.log("Hein", movie);
 
         this.nativeStorage.setItem('favorites', {
             movies: this.favList
         }).then(() => console.log(movie.getTitle(), "successfully stored in the db!"))
-          .catch(err => console.error('Error setting the movie', movie.getTitle(), 'in the db! (', err, ')'));
+            .catch(err => console.error('Error setting the movie', movie.getTitle(), 'in the db! (', err, ')'));
     }
 
     deleteMovieFromList(id: any) {
@@ -57,7 +56,7 @@ export class StorageProvider {
 
         this.setFavList(this.favList);
 
-        console.log("Successfully deleted ", deletedElem);
+        //console.log("Successfully deleted ", deletedElem);
     }
 
     clearDB() {
