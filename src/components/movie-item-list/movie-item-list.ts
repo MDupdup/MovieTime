@@ -14,8 +14,8 @@ import { FavoritesPage } from '../../pages/favorites/favorites';
     templateUrl: 'movie-item-list.html'
 })
 export class MovieItemListComponent {
-    @Input() movie: string;
-    @Input() fav: boolean;
+    // @Input() movie: string;
+    // @Input() fav: boolean;
 
     constructor(public mProvider: MoviesProvider, public sProvider: StorageProvider, public favs: FavoritesPage) {}
 
