@@ -33,10 +33,10 @@ export class DetailPage {
 
     public addToFavorites(movie: Movie) {
         //console.log(this.nativeStorage.getItem(movie.getId() + ''))
-        if (movie.getTitle() === "bite") {
+        if (this.sProvider.getFavList().find(x => x.getId() === movie.getId()) !== undefined) {
             const alert = this.alertPopup.create({
                 title: 'Erreur !',
-                subTitle: 'Le film ' + movie.getTitle() + ' est déjà dans votre liste de favoris !',
+                subTitle: 'Le film <span style="font-weight: bold;">' + movie.getTitle() + '</span> est déjà dans votre liste de favoris !',
                 buttons: ['Annuler']
             });
             alert.present();

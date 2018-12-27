@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController, ViewController } from 'ionic-angular';
 import { Movie } from '../../models/Movie';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { StorageProvider } from '../../providers/storage/storage';
@@ -11,7 +11,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 export class FavoritesPage {
     favMoviesList: Movie[] = [];
 
-    constructor(public navCtrl: NavController, private sProvider: StorageProvider, public mProvider: MoviesProvider) {
+    constructor(public navCtrl: NavController, public viewCtrl: ViewController, private sProvider: StorageProvider, public mProvider: MoviesProvider, public alert: AlertController) {
 
     }
 
@@ -21,44 +21,32 @@ export class FavoritesPage {
         console.log("C'est par là");
     }
 
-    ionViewWillEnter() {
+    ionViewDidEnter() {
         this.favMoviesList = this.sProvider.getFavList();
 
         console.log("On y arrive");
 
-        console.table(this.favMoviesList);
-
-        //FIX ME : @MALO Mock to simply test and add style to the list
-        /*this.favMoviesList = [];
-        this.mProvider.listMoviesInTheaters(1).subscribe(response => {
-            this.favMoviesList = response['results'].map(movie =>
-                new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
-            );
-            console.log(this.favMoviesList)
-        });*/
-        
+        console.table(this.favMoviesList);        
     }
 
-    displayDBItems() {
-
-        console.log('list in fav before', this.favMoviesList);
-
-        this.favMoviesList = this.sProvider.getFavList();
-
-        /*this.nativeStorage.getItem('favorites').then(data => {
-            this.favMoviesList = [];
-            data.forEach(e => {
-                console.log('Le film dans la liste ', e)
-                this.favMoviesList.push(
-                    new Movie(e.id, e.title, e.overview, e.poster_path, e.release_date, e.vote_average)
-                );
-            });
-    
-            console.log('lolilol:', this.favMoviesList);
-        });*/
-    }
-
-    reload() {
-        window.location.reload();
+    public deleteMovieFromList(movie: Movie) {
+        const alert = this.alert.create({
+            title: 'Êtes-vous sûr ?',
+            subTitle: 'Souhaitez-vous vraiment supprimer le film <span style="font-weight: bold;">' + movie.getTitle() + '</span> de vos favoris ?',
+            buttons: [
+                {
+                    text: 'Non',
+                    handler: () => { }
+                },
+                {
+                    text: 'Oui',
+                    handler: () => {
+                        this.sProvider.deleteMovieFromList(movie.getId());
+                        this.viewCtrl._didEnter();
+                    }
+                }
+            ]
+        });
+        alert.present();
     }
 }

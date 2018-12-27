@@ -12,7 +12,7 @@
     </button>
     <br>
     <!-- TODO connect me -->
-    <button ion-button padding (click)="sProvider.deleteMovieFromList(movie.id)" color="danger" *ngIf="fav">
+    <button ion-button padding (click)="favs.deleteMovieFromList(movie)" color="danger" *ngIf="fav">
         Retirer liste
         <ion-icon name="star" padding-left></ion-icon>
     </button>

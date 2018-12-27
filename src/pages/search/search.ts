@@ -19,7 +19,7 @@ export class SearchPage implements OnInit {
     nresults;
     searching;
 
-    constructor(public navCtrl: NavController, public mProvider: MoviesProvider, public qrScanner: QRScanner) {
+    constructor(public mProvider: MoviesProvider, public qrScanner: QRScanner) {
        
     }
 

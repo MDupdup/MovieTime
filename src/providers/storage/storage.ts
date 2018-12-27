@@ -21,7 +21,7 @@ export class StorageProvider {
         });
     }
 
-    getFavList() {
+    getFavList(): Movie[] {
         this.nativeStorage.getItem('favorites')
         .then(data => {
             this.favList = data.movies.map(e => {
