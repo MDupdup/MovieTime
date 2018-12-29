@@ -6,7 +6,7 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title>Détail du film</ion-title>
+        <ion-title>{{t.__('Detail of the movie')}}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -15,11 +15,11 @@
 <ion-content class="has-header">
     <!-- Infos -->
     <div *ngIf="searching">
-        <p text-center>Recherche en cours ...</p>
+        <p text-center>{{t.__('Search in progress...')}}</p>
     </div>
 
     <div *ngIf="!movie && !searching">
-        <p text-center> Le film n'a pas été trouvé...</p>
+        <p text-center>{{t.__('No results found')}}</p>
     </div>
 
     <!-- Content -->
@@ -45,7 +45,7 @@
             <ion-badge color="danger">{{movie.getRuntime()}}</ion-badge>
             <br>
             <br>
-            <h2>Synopsis : </h2>
+            <h2>{{t.__('Synopsis:')}}</h2>
             <p>
                 {{movie.getOverview()}}
             </p>

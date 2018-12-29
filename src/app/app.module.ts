@@ -22,6 +22,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { MovieItemListComponent } from '../components/movie-item-list/movie-item-list';
 import { SeparatorComponent } from '../components/separator/separator';
 import { StorageProvider } from '../providers/storage/storage';
+import { TranslateProvider } from '../providers/translate/translate';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { StorageProvider } from '../providers/storage/storage';
     QRScanner,
     Camera,
     StorageProvider,
-    FavoritesPage
+    FavoritesPage,
+    TranslateProvider
   ]
 })
 export class AppModule { }

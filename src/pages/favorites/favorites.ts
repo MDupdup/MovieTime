@@ -3,6 +3,7 @@ import { Nav, Platform, NavController, AlertController, ViewController } from 'i
 import { Movie } from '../../models/Movie';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { StorageProvider } from '../../providers/storage/storage';
+import { TranslateProvider } from '../../providers/translate/translate';
 
 @Component({
     selector: 'page-favorites',
@@ -12,7 +13,7 @@ export class FavoritesPage {
     favMoviesList: Movie[] = [];
     @ViewChild(Nav) nav: Nav;
 
-    constructor(private sProvider: StorageProvider, public mProvider: MoviesProvider, public alert: AlertController) {
+    constructor(private sProvider: StorageProvider, public mProvider: MoviesProvider, public alert: AlertController, public t: TranslateProvider) {
 
     }
 
@@ -22,15 +23,15 @@ export class FavoritesPage {
 
     public deleteMovieFromList(movie: Movie) {
         const alert = this.alert.create({
-            title: 'Êtes-vous sûr ?',
-            subTitle: 'Souhaitez-vous vraiment supprimer le film <span style="font-weight: bold;">' + movie.getTitle() + '</span> de vos favoris ?',
+            title: this.t.__('Are you sure about that?'),
+            subTitle: this.t.__('Do you really want to delete the movie ')+'<span style="font-weight: bold;">' + movie.getTitle() + '</span> '+this.t.__(' of your favorites?'),
             buttons: [
                 {
-                    text: 'Non',
+                    text: this.t.__('No'),
                     handler: () => { }
                 },
                 {
-                    text: 'Oui',
+                    text: this.t.__('Yes'),
                     handler: () => {
                         this.sProvider.deleteMovieFromList(movie.getId());
                     }

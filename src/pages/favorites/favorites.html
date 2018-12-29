@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-title>
             <ion-icon name="md-star" padding-right></ion-icon>
-            Mes favoris
+            {{t.__("My favorites")}}
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -12,7 +12,7 @@
 <ion-content>
     <!-- Infos -->
     <div *ngIf="!favMoviesList || favMoviesList.length === 0">
-        <p text-center>Vous n'avez aucun favori</p>
+        <p text-center>{{t.__("You have no favorites")}}</p>
     </div>
 
     <!-- Content -->

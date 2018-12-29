@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MoviesProvider } from '../../providers/movies/movies';
 import { StorageProvider } from '../../providers/storage/storage';
 import { FavoritesPage } from '../../pages/favorites/favorites';
+import { TranslateProvider } from '../../providers/translate/translate';
 
 /**
  * Generated class for the MovieItemListComponent component.
@@ -17,6 +18,6 @@ export class MovieItemListComponent {
     @Input() movie: string;
     @Input() fav: boolean;
 
-    constructor(public mProvider: MoviesProvider, public sProvider: StorageProvider, public favs: FavoritesPage) {}
+    constructor(public mProvider: MoviesProvider, public sProvider: StorageProvider, public favs: FavoritesPage, public t: TranslateProvider) {}
 
 }

@@ -5,6 +5,7 @@ import { Movie } from '../../models/Movie';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { StorageProvider } from '../../providers/storage/storage';
 import { Platform } from 'ionic-angular';
+import { TranslateProvider } from '../../providers/translate/translate';
 
 @Component({
     selector: 'page-search',
@@ -19,7 +20,7 @@ export class SearchPage implements OnInit {
     nresults;
     searching;
 
-    constructor(public mProvider: MoviesProvider, public qrScanner: QRScanner) {
+    constructor(public mProvider: MoviesProvider, public qrScanner: QRScanner, public t: TranslateProvider) {
        
     }
 

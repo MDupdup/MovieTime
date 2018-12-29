@@ -43,7 +43,7 @@ export class Movie {
     }
     
     public getReleaseDate(): string {
-        return new Date(this.releaseDate).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        return new Date(this.releaseDate).toLocaleDateString((window.navigator.language || 'fr-FR'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     public getReleaseYear(): string {

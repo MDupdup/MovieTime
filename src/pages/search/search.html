@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-title>
             <ion-icon name="md-search" padding-right></ion-icon>
-            Rechercher des films
+            {{t.__('Search for movies')}}
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -10,21 +10,21 @@
 <ion-content>
     <!-- SearchBar -->
     <div class="search-content">
-        <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="Rechercher"></ion-searchbar>
+        <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="{{t.__('Search for')}}"></ion-searchbar>
         <button ion-button padding navPush="QrscannerPage">
             <ion-icon name="qr-scanner"></ion-icon>
         </button>
     </div>
 
     <!-- <separator></separator>  -->
-
+    
     <!-- Infos -->
     <div *ngIf="searching">
-        <p text-center>Recherche en cours ...</p>
+        <p text-center>{{t.__("Search in progress...")}}</p>
     </div>
 
     <div *ngIf="(!movies || movies.length === 0) && !searching">
-        <p text-center>Aucun résultats</p>
+        <p text-center>{{t.__("No results found")}}</p>
     </div>
 
     <!-- Content -->
@@ -34,6 +34,6 @@
 
     <!-- More -->
     <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()" class="moremovie">
-        Plus de films
+        {{t.__("More movies")}}
     </button>
 </ion-content>

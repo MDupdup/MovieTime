@@ -5,6 +5,7 @@ import { Movie } from '../../models/Movie';
 import { Category } from '../../models/Category';
 import { CastExpr } from '@angular/compiler';
 import { eachLangs } from '../../assets/langs'
+import { TranslateProvider } from '../../providers/translate/translate';
 
 @Component({
     selector: 'page-movie4Tonight',
@@ -23,7 +24,7 @@ export class Movie4TonightPage {
     page = 1
     noMoreMovies = false
 
-    constructor(public navCtrl: NavController, public mProvider: MoviesProvider) {
+    constructor(public navCtrl: NavController, public mProvider: MoviesProvider, public t: TranslateProvider) {
     }
 
     public ngOnInit() {
