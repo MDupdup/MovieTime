@@ -23,6 +23,7 @@ import { MovieItemListComponent } from '../components/movie-item-list/movie-item
 import { SeparatorComponent } from '../components/separator/separator';
 import { StorageProvider } from '../providers/storage/storage';
 import { TranslateProvider } from '../providers/translate/translate';
+import { Network } from '@ionic-native/network';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { TranslateProvider } from '../providers/translate/translate';
     NativeStorage,
     QRScanner,
     Camera,
+    Network,
     StorageProvider,
     FavoritesPage,
     TranslateProvider

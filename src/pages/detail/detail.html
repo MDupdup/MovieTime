@@ -34,7 +34,7 @@
         <ion-card-content>
             <ion-card-title>
                 {{movie.getTitle()}}
-                <ion-badge color="light"><span [ngClass]="{'good': movie.getVoteAvg() > 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() <= 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span></ion-badge>
+                <ion-badge color="light"><span [ngClass]="{'good': movie.getVoteAvg() >= 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() < 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span></ion-badge>
             </ion-card-title>
             <span *ngFor="let genre of movie.getGenre()">
                 <ion-badge color="primary">{{genre.name}}</ion-badge>

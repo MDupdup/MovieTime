@@ -1,7 +1,7 @@
 
 # MovieTime - An Ionic App
 
-MovieTime is Ionic app developt for a school project in Ingesup B3 - Ynov Nantes
+MovieTime is Ionic app developed for a school project in Ingesup B3 - Ynov Nantes
 This app has been made by **DUPONT Malo** & **CAUMES Kirian**
 
 ## Getting Started

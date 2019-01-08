@@ -43,7 +43,7 @@ export class DetailPage {
             alert.present();
         } else {
             const confirm = this.alertPopup.create({
-                title: this.t.__('Search in progress...'),
+                title: this.t.__('Add this film to your favorites?'),
                 message: movie.getTitle(),
                 buttons: [
                     {

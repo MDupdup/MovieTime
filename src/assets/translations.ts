@@ -162,4 +162,17 @@ export const translations =
                 "fr-FR": "Retirer liste"
             }
         },
+        // Toasts
+        {
+            "key": "Lost connection to the Internet :(",
+            "trad": {
+                "fr-FR": "Plus de connexion Internet :("
+            }
+        },
+        {
+            "key": "Back online!",
+            "trad": {
+                "fr-FR": "Connecté à Internet !"
+            }
+        }
     ]

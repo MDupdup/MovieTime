@@ -21,8 +21,8 @@ export class Movie4TonightPage {
     selectedYear;
     selectedLang;
 
-    page = 1
-    noMoreMovies = false
+    page = 1;
+    noMoreMovies = false;
 
     constructor(public navCtrl: NavController, public mProvider: MoviesProvider, public t: TranslateProvider) {
     }
@@ -47,33 +47,32 @@ export class Movie4TonightPage {
             let newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
-            this.noMoreMovies = newMovies.length ? false : true
+            this.noMoreMovies = newMovies.length ? false : true;
             this.movies = this.movies.concat(newMovies);
             this.searching = false;
         });
     }
 
     public getMore() {
-        this.page++
-        this.searchMovies()
+        this.page++;
+        this.searchMovies();
     }
 
     public setCategories(categories: [Category]) {
-        this.selectedCategories = categories
-        this.movies = []
-        this.searchMovies()
+        this.selectedCategories = categories;
+        this.movies = [];
+        this.searchMovies();
     }
 
     public setYear(year: number) {
-        this.selectedYear = year
-        this.movies = []
-        this.searchMovies()
+        this.selectedYear = year;
+        this.movies = [];
+        this.searchMovies();
     }
 
     public setLangs(lang: [String]) {
-        this.selectedLang = lang
-        this.movies = []
-        this.searchMovies()
+        this.selectedLang = lang;
+        this.movies = [];
+        this.searchMovies();
     }
-
 }
