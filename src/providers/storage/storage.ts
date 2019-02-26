@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { NativeStorage } from '@ionic-native/native-storage';
-import { Movie } from '../../models/Movie';
+import {Injectable} from '@angular/core';
+import {NativeStorage} from '@ionic-native/native-storage';
+import {Movie} from '../../models/Movie';
 
 /*
   Generated class for the StorageProvider provider.
@@ -13,7 +13,8 @@ export class StorageProvider {
 
     favList: Movie[] = [];
 
-    constructor(public nativeStorage: NativeStorage) { }
+    constructor(public nativeStorage: NativeStorage) {
+    }
 
     setFavList(movieList: Movie[]) {
         this.nativeStorage.setItem('favorites', {
@@ -31,7 +32,8 @@ export class StorageProvider {
             })
             .catch(err => {
                 console.error('Excuse me what the fuck (', err, ')');
-            });;
+            });
+        ;
 
         //console.log('AFTER', this.favList);
 
