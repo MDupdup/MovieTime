@@ -25,7 +25,7 @@
     <!-- Content -->
     <ion-card *ngIf="movie">
         <div item-start>
-            <img src="{{movie.getPosterPath()}}" onError="src ='../assets/imgs/movie.png'">
+            <img src="{{movie.posterPath}}" onError="src ='../assets/imgs/movie.png'">
             <!-- <ion-spinner></ion-spinner> -->
             <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
                 <ion-icon name="star"></ion-icon>
@@ -33,24 +33,24 @@
         </div>
         <ion-card-content>
             <ion-card-title>
-                {{movie.getTitle()}}
-                <ion-badge color="light"><span [ngClass]="{'good': movie.getVoteAvg() >= 7, 'average': movie.getVoteAvg() >= 3.5 && movie.getVoteAvg() < 7, 'bad': movie.getVoteAvg() < 3.5}">{{movie.getVoteAvg()}}/10</span></ion-badge>
+                {{movie.title}}
+                <ion-badge color="light"><span [ngClass]="{'good': movie.voteAvg >= 7, 'average': movie.voteAvg >= 3.5 && movie.voteAvg < 7, 'bad': movie.voteAvg < 3.5}">{{movie.voteAvg}}/10</span></ion-badge>
             </ion-card-title>
-            <span *ngFor="let genre of movie.getGenre()">
-                <ion-badge color="primary">{{genre.name}}</ion-badge>
+            <span *ngFor="let myGenre of movie.genre">
+                <ion-badge color="primary">{{myGenre.name}}</ion-badge>
             </span>
             <br>
 
-            <ion-badge color="danger">{{movie.getReleaseDate()}}</ion-badge>
-            <ion-badge color="danger">{{movie.getRuntime()}}</ion-badge>
+            <ion-badge color="danger">{{movie.releaseDate}}</ion-badge>
+            <ion-badge color="danger">{{movie.runtime}}</ion-badge>
             <br>
             <br>
             <h2>{{t.__('Synopsis:')}}</h2>
             <p>
-                {{movie.getOverview()}}
+                {{movie.overview}}
             </p>
             <div class="qr-container">
-                <qrcode qrdata="{{movie.getId()}}" [size]="128" [level]="'M'"></qrcode>
+                <qrcode qrdata="{{movie.id}}" [size]="128" [level]="'M'"></qrcode>
             </div>
 
         </ion-card-content>

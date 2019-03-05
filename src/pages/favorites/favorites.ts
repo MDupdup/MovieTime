@@ -24,7 +24,7 @@ export class FavoritesPage {
     public deleteMovieFromList(movie: Movie) {
         const alert = this.alert.create({
             title: this.t.__('Are you sure about that?'),
-            subTitle: this.t.__('Do you really want to delete the movie ')+'<span style="font-weight: bold;">' + movie.getTitle() + '</span> '+this.t.__(' of your favorites?'),
+            subTitle: this.t.__('Do you really want to delete the movie ')+'<span style="font-weight: bold;">' + movie.title + '</span> '+this.t.__(' of your favorites?'),
             buttons: [
                 {
                     text: this.t.__('No'),
@@ -33,7 +33,7 @@ export class FavoritesPage {
                 {
                     text: this.t.__('Yes'),
                     handler: () => {
-                        this.sProvider.deleteMovieFromList(movie.getId());
+                        this.sProvider.deleteMovieFromList(movie.id);
                     }
                 }
             ]

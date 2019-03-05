@@ -37,14 +37,14 @@ export class DetailPage {
         if (this.sProvider.isMovieInDb(movie)) {
             const alert = this.alertPopup.create({
                 title: this.t.__('Error!'),
-                subTitle: this.t.__('The movie ')+'<span style="font-weight: bold;">' + movie.getTitle() + '</span> '+this.t.__('is already in your favorites list!'),
+                subTitle: this.t.__('The movie ')+'<span style="font-weight: bold;">' + movie.title + '</span> '+this.t.__('is already in your favorites list!'),
                 buttons: [this.t.__('Cancel')]
             });
             alert.present();
         } else {
             const confirm = this.alertPopup.create({
                 title: this.t.__('Add this film to your favorites?'),
-                message: movie.getTitle(),
+                message: movie.title,
                 buttons: [
                     {
                         text: this.t.__('No'),

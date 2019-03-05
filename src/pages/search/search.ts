@@ -6,6 +6,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { StorageProvider } from '../../providers/storage/storage';
 import { Platform } from 'ionic-angular';
 import { TranslateProvider } from '../../providers/translate/translate';
+import 'rxjs/add/operator/first'
 
 @Component({
     selector: 'page-search',
@@ -46,7 +47,7 @@ export class SearchPage implements OnInit {
     }
 
     public getMovieBySearch() {
-        this.mProvider.searchForMovie(this.localSearch, this.page).subscribe(response => {
+        this.mProvider.searchForMovie(this.localSearch, this.page).first().subscribe(response => {
             let newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             )

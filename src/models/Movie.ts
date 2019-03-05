@@ -3,66 +3,93 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class Movie {
 
-    private id;
-    private title;
-    private overview;
-    private posterPath;
-    private originalLanguage;
-    private releaseDate;
-    private genre;
-    private runtime;
-    private voteAvg;
+    private _id;
+    private _title;
+    private _overview;
+    private _posterPath;
+    private _originalLanguage;
+    private _releaseDate;
+    private _genre;
+    private _runtime;
+    private _voteAvg;
 
 
     public constructor(id: number, title: string, overview: string, posterPath: string, releaseDate: string, voteAvg: number, originalLanguage?: string, genre?: Array<Object>, runtime?: number) {
-        this.id = id;
-        this.title = title;
-        this.overview = overview;
-        this.posterPath = posterPath;
-        this.releaseDate = releaseDate;
-        this.voteAvg = voteAvg;
-        if(originalLanguage) this.originalLanguage = originalLanguage;
-        if(genre) this.genre = genre;
-        if(runtime) this.runtime = runtime;
+        this._id = id;
+        this._title = title;
+        this._overview = overview;
+        this._posterPath = posterPath;
+        this._releaseDate = releaseDate;
+        this._voteAvg = voteAvg;
+        this._originalLanguage = originalLanguage;
+        this._genre = genre;
+        this._runtime = runtime;
     }
 
-    public getId(): number {
-        return this.id;
+    set id(id:number){
+        this._id = id;
+    }
+    get id():number{
+        return this._id;
     }
 
-    public getTitle(): string {
-        return this.title;
+    set title(title:string){
+        this._title = title;
+    }
+    get title():string{
+        return this._title;
     }
 
-    public getOverview(): string {
-        return this.overview;
+    set overview(overview:string){
+        this._overview = overview;
+    }
+    get overview():string{
+        return this._overview;
     }
 
-    public getPosterPath(): string {
-        return "https://image.tmdb.org/t/p/w600_and_h900_bestv2"+this.posterPath;
+    set posterPath(posterPath:string){
+        this._posterPath = posterPath;
+    }
+    get posterPath():string{
+        return "https://image.tmdb.org/t/p/w600_and_h900_bestv2"+this._posterPath;
+    }
+
+    set releaseDate(releaseDate:string){
+        this._releaseDate = releaseDate;
+    }
+    get releaseDate():string{
+        return new Date(this._releaseDate).toLocaleDateString((window.navigator.language || 'fr-FR'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    set voteAvg(voteAvg:number){
+        this._voteAvg = voteAvg;
+    }
+    get voteAvg():number{
+        return this._voteAvg;
+    }    
+
+    set originalLanguage(originalLanguage:number){
+        this._originalLanguage = originalLanguage;
+    }
+    get originalLanguage():number{
+        return this._originalLanguage;
+    }
+
+    set genre(genre:Array<Object>){
+        this._genre = genre;
+    }
+    get genre():Array<Object>{
+        return this._genre;
     }
     
-    public getReleaseDate(): string {
-        return new Date(this.releaseDate).toLocaleDateString((window.navigator.language || 'fr-FR'), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    set runtime(runtime:string){
+        this._runtime = runtime;
+    }
+    get runtime():string{
+        return Math.floor(parseInt(this._runtime) / 60)+"H"+parseInt(this._runtime) % 60;
     }
 
     public getReleaseYear(): string {
         return this.releaseDate.split("-")[0];
-    }
-
-    public getVoteAvg(): number {
-        return this.voteAvg;
-    }
-
-    public getOriginalLanguage(): string {
-        return this.originalLanguage;
-    }
-
-    public getGenre(): string {
-        return this.genre;
-    }
-
-    public getRuntime(): string {
-        return Math.floor(this.runtime / 60)+"H"+this.runtime % 60;
     }
 }
