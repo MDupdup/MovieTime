@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon name="videocam" padding-right></ion-icon>
+            {{t.__('Movie4Tonight')}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- SearchBar -->
+    <ion-item>
+        <ion-label>{{t.__('Type(s)')}}</ion-label>
+        <ion-select [(ngModel)]="category" multiple="true" (ngModelChange)="setCategories(category)">
+            <ion-option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>{{t.__('Year')}}</ion-label>
+        <ion-select [(ngModel)]="year" (ngModelChange)="setYear(year)">
+            <ion-option *ngFor="let year of years">{{year}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>{{t.__('Original language(s)')}}</ion-label>
+        <ion-select [(ngModel)]="lang" (ngModelChange)="setLangs(lang)" multiple="true" >
+            <ion-option *ngFor="let lang of langs" value="{{lang.code}}">{{lang.name}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <!-- <separator></separator>  -->
+
+    <!-- Infos -->
+    <div *ngIf="searching">
+        <p text-center>{{t.__('Search in progress...')}}</p>
+    </div>
+
+    <div *ngIf="(!movies || movies.length === 0) && !searching">
+        <p text-center>{{t.__('No results found')}}</p>
+    </div>
+    <!-- Content -->
+    <ion-list *ngIf="movies">
+        <movie-item-list *ngFor="let movie of movies" [movie]="movie" [fav]="false"></movie-item-list>
+    </ion-list>
+
+    <!-- More -->
+    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full (click)="getMore()" class="moremovie">
+        {{t.__('More movies')}}
+    </button>
+</ion-content>

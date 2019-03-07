@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <ion-icon name="md-star" padding-right></ion-icon>
+            {{t.__("My favorites")}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <!-- Infos -->
+    <div *ngIf="!favMoviesList || favMoviesList.length === 0">
+        <p text-center>{{t.__("You have no favorites")}}</p>
+    </div>
+
+    <!-- Content -->
+    <ion-list *ngIf="favMoviesList">
+        <movie-item-list *ngFor="let movie of favMoviesList" [movie]="movie" [fav]="true"></movie-item-list>
+    </ion-list>
+</ion-content>
