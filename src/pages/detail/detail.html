@@ -25,7 +25,7 @@
     <!-- Content -->
     <ion-card *ngIf="movie">
         <div item-start>
-            <img src="{{movie.posterPath}}" onError="src ='../assets/imgs/movie.png'">
+            <img [src]="movie.posterPath" onError="src ='../assets/imgs/movie.png'">
             <!-- <ion-spinner></ion-spinner> -->
             <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
                 <ion-icon name="star"></ion-icon>
@@ -50,7 +50,7 @@
                 {{movie.overview}}
             </p>
             <div class="qr-container">
-                <qrcode qrdata="{{movie.id}}" [size]="128" [level]="'M'"></qrcode>
+                <qrcode [qrdata]="movie.id" [size]="128" [level]="'M'"></qrcode>
             </div>
 
         </ion-card-content>

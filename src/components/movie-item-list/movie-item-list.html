@@ -1,6 +1,6 @@
 <ion-item>
     <div item-start>
-        <img src="{{movie.posterPath}}" onError="src ='../assets/imgs/movie.png'">
+        <img [src]="movie.posterPath" onError="src ='../assets/imgs/movie.png'">
         <!-- <ion-spinner></ion-spinner> -->
     </div>
     <h2 text-wrap>{{movie.title}}</h2>

@@ -10,7 +10,7 @@
 <ion-content>
     <!-- SearchBar -->
     <div class="search-content">
-        <ion-searchbar (ionInput)="onSearch($event.target.value)" placeholder="{{t.__('Search for')}}"></ion-searchbar>
+        <ion-searchbar (ionInput)="onSearch($event.target.value)" [placeholder]="t.__('Search for')" ></ion-searchbar>
         <button ion-button padding navPush="QrscannerPage">
             <ion-icon name="qr-scanner"></ion-icon>
         </button>
