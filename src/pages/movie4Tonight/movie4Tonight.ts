@@ -24,12 +24,15 @@ export class Movie4TonightPage {
     page = 1;
     noMoreMovies = false;
 
+    getCategorySub
+    complexeSearchForMovieSub
+
     constructor(public navCtrl: NavController, public mProvider: MoviesProvider, public t: TranslateProvider) {
     }
 
     public ngOnInit() {
         //Setting categories from api
-        this.mProvider.getCategory().subscribe(response => {
+        this.getCategorySub = this.mProvider.getCategory().subscribe(response => {
             this.categories = response['genres'].map(x =>
                 new Category(x.id, x.name)
             );
@@ -43,7 +46,7 @@ export class Movie4TonightPage {
     public searchMovies() {
         this.searching = true
 
-        this.mProvider.complexeSearchForMovie(this.selectedYear, this.selectedCategories, this.selectedLang, this.page).subscribe(response => {
+        this.complexeSearchForMovieSub = this.mProvider.complexeSearchForMovie(this.selectedYear, this.selectedCategories, this.selectedLang, this.page).subscribe(response => {
             let newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
@@ -74,5 +77,10 @@ export class Movie4TonightPage {
         this.selectedLang = lang;
         this.movies = [];
         this.searchMovies();
+    }
+
+    ionViewWillLeave() {
+        if (this.getCategorySub) this.getCategorySub.unsubscribe()
+        if (this.complexeSearchForMovieSub) this.complexeSearchForMovieSub.unsubscribe()
     }
 }

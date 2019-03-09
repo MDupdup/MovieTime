@@ -22,11 +22,13 @@ export class DetailPage {
     movie: Movie;
     movieListInDB: Movie[] = []
 
+    getMovieByIdSub
+
     constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, private alertPopup: AlertController, private sProvider: StorageProvider, public t: TranslateProvider) { }
 
     ngOnInit() {
         this.searching = true
-        this.mProvider.getMovieById().subscribe(movie => {
+        this.getMovieByIdSub = this.mProvider.getMovieById().subscribe(movie => {
             this.movie = new Movie(movie['id'], movie['title'], movie['overview'], movie['poster_path'], movie['release_date'], movie['vote_average'], movie['original_language'], movie['genres'], movie['runtime']);
             this.searching = false
         });
@@ -61,4 +63,9 @@ export class DetailPage {
             confirm.present();
         }
     }
+
+    ionViewWillLeave() {
+        if(this.getMovieByIdSub) this.getMovieByIdSub.unsubscribe()
+    }
+    
 }

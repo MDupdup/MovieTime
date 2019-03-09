@@ -16,6 +16,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
     templateUrl: 'qrscanner.html',
 })
 export class QrscannerPage {
+    scanSub
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesProvider, public qrScanner: QRScanner) {
     }
@@ -27,13 +28,13 @@ export class QrscannerPage {
                     this.qrScanner.show()
                     window.document.querySelector('ion-app').classList.add('cameraView');
 
-                    let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+                    this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
                         this.navCtrl.pop();
                         this.navCtrl.push("DetailPage")
                         this.mProvider.setMovieId(parseInt(text))
 
                         this.qrScanner.hide();
-                        scanSub.unsubscribe();
+                        this.scanSub.unsubscribe();
                         //window.document.querySelector('ion-app').classList.remove('cameraView');
                     });
                 } else if (status.denied) {
@@ -46,6 +47,7 @@ export class QrscannerPage {
     }
 
     ionViewWillLeave() {
+        if(this.scanSub) this.scanSub.unsubscribe();
         window.document.querySelector('ion-app').classList.remove('cameraView');
     }
 

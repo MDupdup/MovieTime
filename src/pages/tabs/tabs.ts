@@ -15,9 +15,11 @@ export class TabsPage {
     tab1Root = FavoritesPage;
     tab2Root = SearchPage;
     tab3Root = Movie4TonightPage;
+    disconnectSub
+    connectSub
 
     constructor(public t: TranslateProvider, public network: Network, public toastCtrl: ToastController) {
-        let disconnectSub = this.network.onDisconnect().subscribe(() => {
+        this.disconnectSub = this.network.onDisconnect().subscribe(() => {
             this.toastCtrl.create({
                 message: "Lost connection to the Internet :(",
                 duration: 4000,
@@ -25,7 +27,7 @@ export class TabsPage {
             }).present();
         });
 
-        let connectSub = this.network.onConnect().subscribe(() => {
+        this.connectSub = this.network.onConnect().subscribe(() => {
             this.toastCtrl.create({
                 message: "Back online!",
                 duration: 4000,
@@ -34,15 +36,8 @@ export class TabsPage {
         });
     }
 
-    onInit() {
-        /*
-
-        disconnectSub.unsubscribe();*/
-
-        
-
-        /*
-
-        connectSub.unsubscribe();*/
+    ionViewWillLeave() {
+        if (this.disconnectSub) this.disconnectSub.unsubscribe();
+        if (this.connectSub) this.connectSub.unsubscribe();
     }
 }
