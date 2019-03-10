@@ -1,6 +1,20 @@
-<ion-tabs selectedIndex="1">
-    <ion-tab [root]="tab1Root" tabTitle="{{t.__('My movies')}}" tabIcon="md-star"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="{{t.__('Search for')}}" tabIcon="md-search"></ion-tab>
-    <ion-tab [root]="tab3Root" tabTitle="{{t.__('Movie4Tonight')}}" tabIcon="md-videocam"></ion-tab>
-  </ion-tabs>
-  
+<ion-tabs>
+
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="favorites"[tab]="">
+            <ion-icon name="md-star"></ion-icon>
+            <ion-label>{{t.__('My movies')}}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="search">
+            <ion-icon name="md-search"></ion-icon>
+            <ion-label>{{t.__('Search for')}}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="movie4tonight">
+            <ion-icon name="md-videocam"></ion-icon>
+            <ion-label>{{t.__('Movie4Tonight')}}</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+
+</ion-tabs>

@@ -1,18 +1,20 @@
-import { AlertController} from '@ionic/angular';
-import {Movie} from '../../../models/Movie';
-import {MoviesProvider} from '../../providers/movies/movies.service';
-import {StorageProvider} from '../../providers/storage/storage.service';
-import {TranslateProvider} from '../../providers/translate/translate.service';
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StorageService} from '../../services/storage/storage.service';
+import {AlertController} from '@ionic/angular';
+import {MoviesService} from '../../services/movies/movies.service';
+import {TranslateService} from '../../services/translate/translate.service';
+import {Movie} from '../../models/Movie';
 
 @Component({
-    selector: 'page-favorites',
-    templateUrl: 'favorites.page.html'
+    selector: 'app-favorites',
+    templateUrl: './favorites.page.html',
+    styleUrls: ['./favorites.page.scss'],
 })
-export class FavoritesPage {
+export class FavoritesPage implements OnInit {
+
     favMoviesList: Movie[] = [];
 
-    constructor(private sProvider: StorageProvider, public mProvider: MoviesProvider, public alert: AlertController, public t: TranslateProvider) {
+    constructor(private sProvider: StorageService, public alert: AlertController, public t: TranslateService) {
 
     }
 
@@ -20,10 +22,10 @@ export class FavoritesPage {
         this.sProvider.getFavList().then((x) => this.favMoviesList = x);
     }
 
-    public deleteMovieFromList(movie: Movie) {
-        const alert = this.alert.create({
+    public async deleteMovieFromList(movie: Movie) {
+        const alert = await this.alert.create({
             header: this.t.__('Are you sure about that?'),
-            subHeader: this.t.__('Do you really want to delete the movie ') + '<span style="font-weight: bold;">' + movie.getTitle() + '</span> ' + this.t.__(' of your favorites?'),
+            subHeader: this.t.__('Do you really want to delete the movie ') + '<span style="font-weight: bold;">' + movie.title + '</span>' + this.t.__(' of your favorites?'),
             buttons: [
                 {
                     text: this.t.__('No'),
@@ -33,13 +35,16 @@ export class FavoritesPage {
                 {
                     text: this.t.__('Yes'),
                     handler: () => {
-                        this.sProvider.deleteMovieFromList(movie.getId());
+                        this.sProvider.deleteMovieFromList(movie.id);
                     }
                 }
             ]
         });
-        alert.then(res => {
-            res.present();
-        });
+        return await alert.present();
     }
+
+    ngOnInit() {
+        this.sProvider.getFavList().then((x) => this.favMoviesList = x);
+    }
+
 }

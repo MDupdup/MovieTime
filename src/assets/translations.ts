@@ -17,7 +17,7 @@ export const translations =
         {
             "key": "No results found",
             "trad": {
-                "fr-FR": "Aucun résultat"
+                "fr-FR": "Aucun résultats"
             }
         },
         {
@@ -166,7 +166,7 @@ export const translations =
         {
             "key": "Lost connection to the Internet :(",
             "trad": {
-                "fr-FR": "Plus de connexion Internet :'("
+                "fr-FR": "Plus de connexion Internet :("
             }
         },
         {

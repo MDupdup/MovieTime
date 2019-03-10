@@ -1,26 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {Routes, RouterModule} from '@angular/router';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { FavoritesPage } from './favorites.page';
+import {FavoritesPage} from './favorites.page';
 
 const routes: Routes = [
-  {
-    path: 'favorites',
-    component: FavoritesPage
-  }
+    {
+        path: '',
+        component: FavoritesPage
+    }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [FavoritesPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [FavoritesPage]
 })
-export class FavoritesPageModule {}
+export class FavoritesPageModule {
+}

@@ -3,6 +3,5 @@ page-qrscanner {
 }
 
 ion-app.cameraView ion-nav{opacity:0}
-ion-app.cameraView,ion-app.cameraView ion-content,ion-app.cameraView .nav-decor,{
-  background: transparent url("../../assets/imgs/camera_overlay.png") !important;
+ion-app.cameraView,ion-app.cameraView ion-content,ion-app.cameraView .nav-decor, {
   background-size: 100% 100% !important;}

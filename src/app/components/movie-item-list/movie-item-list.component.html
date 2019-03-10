@@ -1,0 +1,21 @@
+<ion-item>
+  <div item-start>
+    <img [src]="movie.posterPath" onError="src ='../assets/imgs/movie.png'">
+    <!-- <ion-spinner></ion-spinner> -->
+  </div>
+  <h2 text-wrap>{{movie.title}}</h2>
+  <p><span
+          [ngClass]="{'good': movie.voteAvg >= 7, 'average': movie.voteAvg >= 3.5 && movie.voteAvg < 7, 'bad': movie.voteAvg < 3.5}">{{movie.voteAvg}}
+    /10</span>
+    • {{movie.getReleaseYear()}}</p>
+  <button ion-button padding (click)="mProvider.setMovieId(movie.id)" navPush="DetailPage">
+    {{t.__('More information')}}
+    <ion-icon name="eye" padding-left></ion-icon>
+  </button>
+  <br>
+  <!-- TODO connect me -->
+  <button ion-button padding (click)="favs.deleteMovieFromList(movie)" color="danger" *ngIf="fav">
+    {{t.__('Remove list')}}
+    <ion-icon name="star" padding-left></ion-icon>
+  </button>
+</ion-item>

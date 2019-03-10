@@ -1,21 +1,61 @@
+<!--
+  Generated template for the DetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
     <ion-navbar>
-        <ion-title>
-            <ion-icon name="md-star" padding-right></ion-icon>
-            {{t.__("My favorites")}}
-        </ion-title>
+        <ion-title>{{t.__('Detail of the movie')}}</ion-title>
     </ion-navbar>
+
 </ion-header>
 
 
-<ion-content>
+<ion-content class="has-header">
     <!-- Infos -->
-    <div *ngIf="!favMoviesList || favMoviesList.length === 0">
-        <p text-center>{{t.__("You have no favorites")}}</p>
+    <div *ngIf="searching">
+        <p text-center>{{t.__('Search in progress...')}}</p>
+    </div>
+
+    <div *ngIf="!movie && !searching">
+        <p text-center>{{t.__('No results found')}}</p>
     </div>
 
     <!-- Content -->
-    <ion-list *ngIf="favMoviesList">
-        <movie-item-list *ngFor="let movie of favMoviesList" [movie]="movie" [fav]="true"></movie-item-list>
-    </ion-list>
+    <ion-card *ngIf="movie">
+        <div item-start>
+            <img [src]="movie.posterPath" onError="src ='../assets/imgs/movie.png'">
+            <!-- <ion-spinner></ion-spinner> -->
+            <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
+                <ion-icon name="star"></ion-icon>
+            </button>
+        </div>
+        <ion-card-content>
+            <ion-card-title>
+                {{movie.title}}
+                <ion-badge color="light"><span
+                        [ngClass]="{'good': movie.voteAvg >= 7, 'average': movie.voteAvg >= 3.5 && movie.voteAvg < 7, 'bad': movie.voteAvg < 3.5}">{{movie.voteAvg}}
+                    /10</span></ion-badge>
+            </ion-card-title>
+            <span *ngFor="let myGenre of movie.genre">
+                <ion-badge color="primary">{{myGenre.name}}</ion-badge>
+            </span>
+            <br>
+
+            <ion-badge color="danger">{{movie.releaseDate}}</ion-badge>
+            <ion-badge color="danger">{{movie.runtime}}</ion-badge>
+            <br>
+            <br>
+            <h2>{{t.__('Synopsis:')}}</h2>
+            <p>
+                {{movie.overview}}
+            </p>
+            <div class="qr-container">
+                <qrcode [qrdata]="movie.id" [size]="128" [level]="'M'"></qrcode>
+            </div>
+
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>

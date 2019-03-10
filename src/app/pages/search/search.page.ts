@@ -1,14 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {MoviesProvider} from '../../providers/movies/movies.service';
-import {Movie} from '../../../models/Movie';
+import {MoviesService} from '../../services/movies/movies.service';
 import {QRScanner} from '@ionic-native/qr-scanner/ngx';
-import {TranslateProvider} from '../../providers/translate/translate.service';
+import {Movie} from '../../models/Movie';
+import {TranslateService} from '../../services/translate/translate.service';
 
 @Component({
-    selector: 'page-search',
-    templateUrl: 'search.page.html'
+    selector: 'app-search',
+    templateUrl: './search.page.html',
+    styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
+
     page = 1;
     movies: Movie[] = [];
     noMoreMovies = false;
@@ -16,11 +18,7 @@ export class SearchPage implements OnInit {
     localSearch;
     searching;
 
-    searchSub;
-    theatersSub;
-
-
-    constructor(public mProvider: MoviesProvider, public qrScanner: QRScanner, public t: TranslateProvider) {
+    constructor(public mProvider: MoviesService, public qrScanner: QRScanner, public t: TranslateService) {
 
     }
 
@@ -32,7 +30,9 @@ export class SearchPage implements OnInit {
     public onSearch(searchValue: string) {
         this.searching = true;
         // if field is same as before, exit the function (optimization purpose)
-        if (this.localSearch === searchValue) return;
+        if (this.localSearch === searchValue) {
+            return;
+        }
         this.page = 1;
         this.movies = [];
         // If field is empty, display movies in theaters
@@ -46,8 +46,8 @@ export class SearchPage implements OnInit {
     }
 
     public getMovieBySearch() {
-        this.searchSub = this.mProvider.searchForMovie(this.localSearch, this.page).subscribe(response => {
-            let newMovies = response['results'].map(movie =>
+        this.mProvider.searchForMovie(this.localSearch, this.page).subscribe(response => {
+            const newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
             this.noMoreMovies = !newMovies.length;
@@ -59,8 +59,8 @@ export class SearchPage implements OnInit {
     private getMoviesInTheaters() {
         this.searching = true;
 
-        this.theatersSub = this.mProvider.listMoviesInTheaters(this.page).subscribe(response => {
-            let newMovies = response['results'].map(movie =>
+        this.mProvider.listMoviesInTheaters(this.page).subscribe(response => {
+            const newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
             this.noMoreMovies = !newMovies.length;
@@ -72,14 +72,9 @@ export class SearchPage implements OnInit {
     public getMore() {
         this.page++;
         if (this.localSearch) {
-            this.getMovieBySearch()
+            this.getMovieBySearch();
         } else {
             this.getMoviesInTheaters()
         }
-    }
-
-    ngOnDestroy(): void {
-        this.searchSub.unsubscribe();
-        this.theatersSub.unsubscribe();
     }
 }

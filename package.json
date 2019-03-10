@@ -1,5 +1,5 @@
 {
-  "name": "Ionic4",
+  "name": "MovieTime_v4_final",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -20,44 +20,30 @@
     "@angular/platform-browser": "^7.2.2",
     "@angular/platform-browser-dynamic": "^7.2.2",
     "@angular/router": "^7.2.2",
-    "@ionic-native/camera": "^5.2.0",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/file": "^5.2.0",
     "@ionic-native/geolocation": "^5.2.0",
-    "@ionic-native/globalization/ngx": "^5.2.0",
-    "@ionic-native/native-storage/ngx": "^5.2.0",
-    "@ionic-native/network/ngx": "^5.2.0",
-    "@ionic-native/qr-scanner/ngx": "^5.2.0",
+    "@ionic-native/globalization": "^5.2.0",
+    "@ionic-native/native-storage": "^5.2.0",
+    "@ionic-native/network": "^5.2.0",
+    "@ionic-native/qr-scanner": "^5.2.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
-    "@ionic/angular": "^4.0.0",
-    "angularx-qrcode": "^1.0.3",
-    "cordova-android": "7.1.4",
-    "cordova-plugin-camera": "4.0.3",
-    "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-file": "6.0.1",
+    "@ionic/angular": "^4.1.0",
     "cordova-plugin-geolocation": "4.0.1",
     "cordova-plugin-globalization": "1.11.0",
-    "cordova-plugin-ionic-keyboard": "^2.1.3",
-    "cordova-plugin-ionic-webview": "^3.1.2",
     "cordova-plugin-nativestorage": "2.3.2",
     "cordova-plugin-network-information": "2.0.1",
     "cordova-plugin-qrscanner": "2.6.0",
-    "cordova-plugin-splashscreen": "^5.0.2",
-    "cordova-plugin-statusbar": "^2.4.2",
-    "cordova-plugin-whitelist": "^1.3.3",
     "core-js": "^2.5.4",
-    "ionic-image-loader": "^6.3.2",
     "rxjs": "~6.3.3",
-    "rxjs-compat": "^6.4.0",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.12.3",
-    "@angular-devkit/build-angular": "~0.12.3",
+    "@angular-devkit/build-angular": "~0.13.0",
     "@angular-devkit/core": "~7.2.3",
     "@angular-devkit/schematics": "~7.2.3",
-    "@angular/cli": "~7.2.3",
+    "@angular/cli": "~7.3.1",
     "@angular/compiler": "~7.2.2",
     "@angular/compiler-cli": "~7.2.2",
     "@angular/language-service": "~7.2.2",
@@ -81,24 +67,11 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      },
-      "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-geolocation": {},
       "cordova-plugin-globalization": {},
-      "cordova-plugin-camera": {},
+      "cordova-plugin-nativestorage": {},
       "cordova-plugin-qrscanner": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-nativestorage": {},
-      "cordova-plugin-file": {}
-    },
-    "platforms": [
-      "android"
-    ]
+      "cordova-plugin-geolocation": {}
+    }
   }
 }

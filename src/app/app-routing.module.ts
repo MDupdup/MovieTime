@@ -1,18 +1,20 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tabs', pathMatch: 'full' },
-  { path: 'tabs', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
-  { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
-  { path: 'qrscanner', loadChildren: './pages/qrscanner/qrscanner.module#QrscannerPageModule' },
-  { path: 'favorites', loadChildren: './pages/favorites/favorites.module#FavoritesPageModule' },
-  { path: 'detail', loadChildren: './pages/detail/detail.module#DetailPageModule' },
-  { path: 'movie4-tonight', loadChildren: './pages/movie4-tonight/movie4-tonight.module#Movie4TonightPageModule' },
+    {path: '', loadChildren: './pages/tabs/tabs.module#TabsPageModule'},
+    {path: 'detail', loadChildren: './pages/detail/detail.module#DetailPageModule'},
+    {path: 'favorites', loadChildren: './pages/favorites/favorites.module#FavoritesPageModule'},
+    {path: 'movie4tonight', loadChildren: './pages/movie4tonight/movie4tonight.module#Movie4tonightPageModule'},
+    {path: 'qrscanner', loadChildren: './pages/qrscanner/qrscanner.module#QrscannerPageModule'},
+    {path: 'search', loadChildren: './pages/search/search.module#SearchPageModule'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+    ],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

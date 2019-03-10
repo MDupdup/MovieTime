@@ -1,27 +1,27 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { QrscannerPage } from './qrscanner.page';
+import {QrscannerPage} from './qrscanner.page';
 
 describe('QrscannerPage', () => {
-  let component: QrscannerPage;
-  let fixture: ComponentFixture<QrscannerPage>;
+    let component: QrscannerPage;
+    let fixture: ComponentFixture<QrscannerPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ QrscannerPage ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [QrscannerPage],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(QrscannerPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(QrscannerPage);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
