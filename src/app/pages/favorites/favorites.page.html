@@ -1,10 +1,10 @@
 <ion-header>
-    <ion-navbar>
+    <ion-toolbar>
         <ion-title>
             <ion-icon name="md-star" padding-right></ion-icon>
             {{t.__("My favorites")}}
         </ion-title>
-    </ion-navbar>
+    </ion-toolbar>
 </ion-header>
 
 
@@ -16,6 +16,6 @@
 
     <!-- Content -->
     <ion-list *ngIf="favMoviesList">
-        <movie-item-list *ngFor="let movie of favMoviesList" [movie]="movie" [fav]="true"></movie-item-list>
+        <app-movie-item-list *ngFor="let movie of favMoviesList" [movie]="movie" [fav]="true"></app-movie-item-list>
     </ion-list>
 </ion-content>

@@ -6,7 +6,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {SearchPage} from './search.page';
-import {PagesModule} from '../pages.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes: Routes = [
     {
@@ -21,7 +21,7 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         RouterModule.forChild(routes),
-        PagesModule
+        ComponentsModule
     ],
     declarations: [SearchPage],
     entryComponents: []

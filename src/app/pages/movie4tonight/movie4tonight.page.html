@@ -1,10 +1,10 @@
 <ion-header>
-    <ion-navbar>
+    <ion-toolbar>
         <ion-title>
             <ion-icon name="videocam" padding-right></ion-icon>
             {{t.__('Movie4Tonight')}}
         </ion-title>
-    </ion-navbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -12,21 +12,21 @@
     <ion-item>
         <ion-label>{{t.__('Type(s)')}}</ion-label>
         <ion-select [(ngModel)]="category" multiple="true" (ngModelChange)="setCategories(category)">
-            <ion-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ion-option>
+            <ion-select-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ion-select-option>
         </ion-select>
     </ion-item>
 
     <ion-item>
         <ion-label>{{t.__('Year')}}</ion-label>
         <ion-select [(ngModel)]="year" (ngModelChange)="setYear(year)">
-            <ion-option *ngFor="let year of years">{{year}}</ion-option>
+            <ion-select-option *ngFor="let year of years">{{year}}</ion-select-option>
         </ion-select>
     </ion-item>
 
     <ion-item>
         <ion-label>{{t.__('Original language(s)')}}</ion-label>
         <ion-select [(ngModel)]="lang" (ngModelChange)="setLangs(lang)" multiple="true">
-            <ion-option *ngFor="let lang of langs" [value]="lang.code">{{lang.name}}</ion-option>
+            <ion-select-option *ngFor="let lang of langs" [value]="lang.code">{{lang.name}}</ion-select-option>
         </ion-select>
     </ion-item>
 
@@ -42,7 +42,7 @@
     </div>
     <!-- Content -->
     <ion-list *ngIf="movies">
-        <movie-item-list *ngFor="let movie of movies" [movie]="movie" [fav]="false"></movie-item-list>
+        <app-movie-item-list *ngFor="let movie of movies" [movie]="movie" [fav]="false"></app-movie-item-list>
     </ion-list>
 
     <!-- More -->

@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MovieItemListComponent} from '../components/movie-item-list/movie-item-list.component';
+import {IonicModule} from '@ionic/angular';
 
 @NgModule({
     declarations: [],
     imports: [
         CommonModule,
-        MovieItemListComponent
+        IonicModule
     ]
 })
 export class PagesModule {
