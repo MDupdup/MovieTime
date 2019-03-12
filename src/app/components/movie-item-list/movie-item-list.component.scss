@@ -18,15 +18,23 @@ app-movie-item-list ion-spinner{
 }
 
 //other
-app-movie-item-list .content{
-  margin-left: 10px;
-}
-app-movie-item-list .content h2, app-movie-item-list .content p, app-movie-item-list .content ion-button{
-  margin: 0;
-  padding: 0;
-}
-app-movie-item-list button.item-button {
-  margin-top: 10px!important;
+app-movie-item-list {
+  .content{
+    margin-left: 10px;
+    h2 {
+      font-size: 18px;
+    }
+    p{
+      font-size: 14px;
+    }
+    h2, p, ion-button{
+      margin: 0;
+      padding: 0;
+    }
+    ion-button{
+      margin-top: 10px;
+    }
+  }
 }
 
 app-movie-item-list ion-spinner * {
