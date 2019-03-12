@@ -30,9 +30,9 @@
         <div item-start>
             <img [src]="movie.posterPath" onError="src ='../assets/imgs/movie.png'">
             <!-- <ion-spinner></ion-spinner> -->
-            <button class="fav-button" ion-button round (click)="addToFavorites(movie)">
+            <ion-button class="fav-button" shape="round" (click)="addToFavorites(movie)">
                 <ion-icon name="star"></ion-icon>
-            </button>
+            </ion-button>
         </div>
         <ion-card-content>
             <ion-card-title>

@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>
-            <ion-icon name="videocam" padding-right></ion-icon>
+            <ion-icon name="videocam" slot="end"></ion-icon>
             {{t.__('Movie4Tonight')}}
         </ion-title>
     </ion-toolbar>
@@ -46,8 +46,8 @@
     </ion-list>
 
     <!-- More -->
-    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full
+    <ion-button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" padding expand="full"
             (click)="getMore()" class="moremovie">
         {{t.__('More movies')}}
-    </button>
+    </ion-button>
 </ion-content>

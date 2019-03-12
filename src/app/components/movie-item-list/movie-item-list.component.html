@@ -8,14 +8,14 @@
             [ngClass]="{'good': movie.voteAvg >= 7, 'average': movie.voteAvg >= 3.5 && movie.voteAvg < 7, 'bad': movie.voteAvg < 3.5}">{{movie.voteAvg}}
         /10</span>
         • {{movie.getReleaseYear()}}</p>
-    <button ion-button padding (click)="this.detail(movie.id)">
+    <ion-button padding (click)="this.detail(movie.id)">
         {{t.__('More information')}}
-        <ion-icon name="eye" padding-left></ion-icon>
-    </button>
+        <ion-icon name="eye" slot="start"></ion-icon>
+    </ion-button>
     <br>
     <!-- TODO connect me -->
-    <button ion-button padding (click)="favs.deleteMovieFromList(movie)" color="danger" *ngIf="fav">
+    <ion-button padding (click)="favs.deleteMovieFromList(movie)" color="danger" *ngIf="fav">
         {{t.__('Remove list')}}
-        <ion-icon name="star" padding-left></ion-icon>
-    </button>
+        <ion-icon name="star" slot="start"></ion-icon>
+    </ion-button>
 </ion-item>

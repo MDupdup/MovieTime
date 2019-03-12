@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>
-            <ion-icon name="md-search" padding-right></ion-icon>
+            <ion-icon name="md-search" slot="end"></ion-icon>
             {{t.__('Search for movies')}}
         </ion-title>
     </ion-toolbar>
@@ -31,7 +31,7 @@
     </ion-list>
 
     <!-- More -->
-    <ion-button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" padding full
+    <ion-button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" padding expand="full"
             (click)="getMore()" class="moremovie">
         {{t.__("More movies")}}
     </ion-button>
