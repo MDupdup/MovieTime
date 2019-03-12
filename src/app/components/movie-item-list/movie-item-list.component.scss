@@ -1,15 +1,16 @@
 @import "../../../theme/variables";
 
 //Set a loader inside img poster
-movie-item-list div[item-start]{
+app-movie-item-list div[item-start]{
   position: relative;
 }
-movie-item-list ion-img, movie-item-list img {
+app-movie-item-list ion-img, app-movie-item-list img {
   width: 80px;
   height: 120px;
+  min-width: 80px;
   background: map-get($colors, secondary)!important;
 }
-movie-item-list ion-spinner{
+app-movie-item-list ion-spinner{
   position: absolute;
   left: calc(50% - 14px);
   top: calc(50% - 14px);
@@ -17,10 +18,36 @@ movie-item-list ion-spinner{
 }
 
 //other
-movie-item-list button.item-button {
+app-movie-item-list .content{
+  margin-left: 10px;
+}
+app-movie-item-list .content h2, app-movie-item-list .content p, app-movie-item-list .content ion-button{
+  margin: 0;
+  padding: 0;
+}
+app-movie-item-list button.item-button {
   margin-top: 10px!important;
 }
 
-movie-item-list ion-spinner * {
+app-movie-item-list ion-spinner * {
   stroke: map-get($colors, primary)!important;
 }
+
+
+
+
+// app-movie-item-list[_ngcontent-c3]   div[item-start][_ngcontent-c3] {
+//   position: relative; }
+// app-movie-item-list[_ngcontent-c2]   ion-img[_ngcontent-c3], movie-item-list[_ngcontent-c2]   img[_ngcontent-c3] {
+//   width: 80px;
+//   height: 120px;
+//   background: #f8de8d !important; }
+// app-movie-item-list[_ngcontent-c3]   ion-spinner[_ngcontent-c3] {
+//   position: absolute;
+//   left: calc(50% - 14px);
+//   top: calc(50% - 14px);
+//   display: none; }
+// app-movie-item-list[_ngcontent-c3]   button.item-button[_ngcontent-c3] {
+//   margin-top: 10px !important; }
+// app-movie-item-list[_ngcontent-c3]   ion-spinner[_ngcontent-c3]   *[_ngcontent-c3] {
+//   stroke: #ab1313 !important; }

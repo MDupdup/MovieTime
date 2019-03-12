@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Movie} from '../../models/Movie';
 import {MoviesService} from '../../services/movies/movies.service';
 import {TranslateService} from '../../services/translate/translate.service';
@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-movie-item-list',
+    encapsulation: ViewEncapsulation.None,
     templateUrl: './movie-item-list.component.html',
     styleUrls: ['./movie-item-list.component.scss'],
 })
