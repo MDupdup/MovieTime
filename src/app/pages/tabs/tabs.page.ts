@@ -10,8 +10,11 @@ import {TranslateService} from '../../services/translate/translate.service';
 })
 export class TabsPage {
 
+    disconnectSub;
+    connectSub;
+
     constructor(public t: TranslateService, public network: Network, public toastCtrl: ToastController) {
-        const disconnectSub = this.network.onDisconnect().subscribe(() => {
+        this.disconnectSub = this.network.onDisconnect().subscribe(() => {
             this.toastCtrl.create({
                 message: 'Lost connection to the Internet :(',
                 duration: 4000,
@@ -19,12 +22,21 @@ export class TabsPage {
             });
         });
 
-        const connectSub = this.network.onConnect().subscribe(() => {
+        this.connectSub = this.network.onConnect().subscribe(() => {
             this.toastCtrl.create({
                 message: 'Back online!',
                 duration: 4000,
                 position: 'bottom'
             });
         });
+    }
+
+    ionViewWillLeave() {
+        if (this.disconnectSub) {
+            this.disconnectSub.unsubscribe();
+        }
+        if (this.connectSub) {
+            this.connectSub.unsubscribe();
+        }
     }
 }

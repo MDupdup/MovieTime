@@ -15,6 +15,8 @@ export class DetailPage implements OnInit {
     searching;
     movie: Movie;
 
+    getMovieByIdSub;
+
     constructor(public mProvider: MoviesService,
                 private alertPopup: AlertController,
                 private sProvider: StorageService,
@@ -23,7 +25,7 @@ export class DetailPage implements OnInit {
 
     ngOnInit() {
         this.searching = true;
-        this.mProvider.getMovieById().subscribe(movie => {
+        this.getMovieByIdSub = this.mProvider.getMovieById().subscribe(movie => {
             this.movie = new Movie(movie['id'], movie['title'], movie['overview'], movie['poster_path'], movie['release_date'], movie['vote_average'], movie['original_language'], movie['genres'], movie['runtime']);
             this.searching = false;
         });
@@ -60,4 +62,7 @@ export class DetailPage implements OnInit {
         }
     }
 
+    ionViewWillLeave() {
+        if(this.getMovieByIdSub) this.getMovieByIdSub.unsubscribe();
+    }
 }

@@ -6,7 +6,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 
 import {FavoritesPage} from './favorites.page';
-import {PagesModule} from '../pages.module';
 import {ComponentsModule} from '../../components/components.module';
 
 const routes: Routes = [

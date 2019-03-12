@@ -11,6 +11,8 @@ import {MoviesService} from '../../services/movies/movies.service';
 })
 export class QrscannerPage implements OnInit {
 
+    scanSub;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesService, public qrScanner: QRScanner) {
     }
 
@@ -21,13 +23,13 @@ export class QrscannerPage implements OnInit {
                     this.qrScanner.show();
                     window.document.querySelector('ion-app').classList.add('cameraView');
 
-                    const scanSub = this.qrScanner.scan().subscribe((text: string) => {
+                    this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
                         this.navCtrl.pop();
                         this.navCtrl.navigateRoot('/detail');
                         this.mProvider.setMovieId(parseInt(text));
 
                         this.qrScanner.hide();
-                        scanSub.unsubscribe();
+                        this.scanSub.unsubscribe();
                     });
                 } else if (status.denied) {
                     // camera permission was permanently denied
@@ -39,6 +41,9 @@ export class QrscannerPage implements OnInit {
     }
 
     ionViewWillLeave() {
+        if (this.scanSub) {
+            this.scanSub.unsubscribe();
+        }
         window.document.querySelector('ion-app').classList.remove('cameraView');
     }
 

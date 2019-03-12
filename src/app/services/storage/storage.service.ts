@@ -22,7 +22,7 @@ export class StorageService {
         await this.nativeStorage.getItem('favorites')
             .then(data => {
                 this.favList = data.movies.map(e => {
-                    return new Movie(e.id, e.title, e.overview, e.posterPath, e.releaseDate, e.voteAvg);
+                    return new Movie(e._id, e._title, e._overview, e._posterPath, e._releaseDate, e._voteAvg);
                 });
             })
             .catch(err => {
@@ -35,7 +35,7 @@ export class StorageService {
     addMovieToList(movie: Movie) {
         this.favList.push(movie);
 
-        return this.nativeStorage.setItem('favorites', {
+        this.nativeStorage.setItem('favorites', {
             movies: this.favList
         }).then(() => console.log(movie.title, 'successfully stored in the db!'))
             .catch(err => console.error('Error setting the movie', movie.title, 'in the db! (', err, ')'));

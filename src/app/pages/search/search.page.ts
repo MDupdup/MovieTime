@@ -18,6 +18,9 @@ export class SearchPage implements OnInit {
     localSearch;
     searching;
 
+    searchForMovieSub;
+    listMoviesInTheaters;
+
     constructor(public mProvider: MoviesService, public qrScanner: QRScanner, public t: TranslateService) {
 
     }
@@ -46,7 +49,7 @@ export class SearchPage implements OnInit {
     }
 
     public getMovieBySearch() {
-        this.mProvider.searchForMovie(this.localSearch, this.page).subscribe(response => {
+        this.searchForMovieSub = this.mProvider.searchForMovie(this.localSearch, this.page).subscribe(response => {
             const newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
@@ -59,7 +62,7 @@ export class SearchPage implements OnInit {
     private getMoviesInTheaters() {
         this.searching = true;
 
-        this.mProvider.listMoviesInTheaters(this.page).subscribe(response => {
+        this.listMoviesInTheaters = this.mProvider.listMoviesInTheaters(this.page).subscribe(response => {
             const newMovies = response['results'].map(movie =>
                 new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
             );
@@ -74,7 +77,16 @@ export class SearchPage implements OnInit {
         if (this.localSearch) {
             this.getMovieBySearch();
         } else {
-            this.getMoviesInTheaters()
+            this.getMoviesInTheaters();
+        }
+    }
+
+    ionViewWillLeave() {
+        if (this.searchForMovieSub) {
+            this.searchForMovieSub.unsubscribe();
+        }
+        if (this.listMoviesInTheaters) {
+            this.listMoviesInTheaters.unsubscribe()
         }
     }
 }

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Movie} from '../../models/Movie';
 import {Category} from '../../models/Category';
 import {eachLangs} from '../../../assets/langs';
-import {NavController} from '@ionic/angular';
 import {MoviesService} from '../../services/movies/movies.service';
 import {TranslateService} from '../../services/translate/translate.service';
 
@@ -25,12 +24,15 @@ export class Movie4tonightPage implements OnInit {
     page = 1;
     noMoreMovies = false;
 
+    getCategorySub;
+    complexeSearchForMovieSub;
+
     constructor(public mProvider: MoviesService, public t: TranslateService) {
     }
 
     public ngOnInit() {
         // Setting categories from api
-        this.mProvider.getCategory().subscribe(response => {
+        this.getCategorySub = this.mProvider.getCategory().subscribe(response => {
             this.categories = response['genres'].map(x =>
                 new Category(x.id, x.name)
             );
@@ -46,7 +48,7 @@ export class Movie4tonightPage implements OnInit {
     public searchMovies() {
         this.searching = true;
 
-        this.mProvider.complexeSearchForMovie(this.selectedYear,
+        this.complexeSearchForMovieSub = this.mProvider.complexeSearchForMovie(this.selectedYear,
             this.selectedCategories,
             this.selectedLang,
             this.page).subscribe(response => {
@@ -82,4 +84,12 @@ export class Movie4tonightPage implements OnInit {
         this.searchMovies();
     }
 
+    ionViewWillLeave() {
+        if (this.getCategorySub) {
+            this.getCategorySub.unsubscribe();
+        }
+        if (this.complexeSearchForMovieSub) {
+            this.complexeSearchForMovieSub.unsubscribe()
+        }
+    }
 }

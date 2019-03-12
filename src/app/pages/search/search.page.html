@@ -11,12 +11,10 @@
     <!-- SearchBar -->
     <div class="search-content">
         <ion-searchbar (ionInput)="onSearch($event.target.value)" [placeholder]="t.__('Search for')"></ion-searchbar>
-        <button ion-button padding navPush="QrscannerPage">
+        <ion-button padding navPush="QrscannerPage">
             <ion-icon name="qr-scanner"></ion-icon>
-        </button>
+        </ion-button>
     </div>
-
-    <!-- <separator></separator>  -->
 
     <!-- Infos -->
     <div *ngIf="searching">
@@ -33,8 +31,8 @@
     </ion-list>
 
     <!-- More -->
-    <button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" ion-button padding full
+    <ion-button *ngIf="movies && movies.length > 0 && !searching && !noMoreMovies" padding full
             (click)="getMore()" class="moremovie">
         {{t.__("More movies")}}
-    </button>
+    </ion-button>
 </ion-content>

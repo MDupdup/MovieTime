@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Globalization} from '@ionic-native/globalization/ngx';
+import {config} from '../../../assets/config';
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +10,7 @@ export class MoviesService {
 
     public userLanguage;
     public movieId;
+    private api;
 
     constructor(private http: HttpClient, private globalization: Globalization) {
         // Get user device language
@@ -21,6 +23,7 @@ export class MoviesService {
                 console.log(e);
                 this.userLanguage = 'fr-FR'; // Default language
             });
+        this.api = config.movieApi;
     }
 
     setMovieId(id: number) {
@@ -28,28 +31,41 @@ export class MoviesService {
     }
 
     listMoviesInTheaters(page) {
-        return this.http.get('https://api.themoviedb.org/3/movie/now_playing?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage + '&page=' + page);
+        return this.http.get(this.generateUrl('/movie/now_playing', {page: page}));
     }
 
     getMovieById() {
-        return this.http.get('http://api.themoviedb.org/3/movie/' + this.movieId + '?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage);
+        return this.http.get(this.generateUrl('/movie/' + this.movieId, null));
     }
 
     searchForMovie(name: string, page: number) {
-        return this.http.get('https://api.themoviedb.org/3/search/movie?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage + '&query=' + name + '&page=' + page);
+        return this.http.get(this.generateUrl('/search/movie', {query: name, page: page}));
     }
 
     getCategory() {
-        return this.http.get('https://api.themoviedb.org/3/genre/movie/list?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage);
+        return this.http.get(this.generateUrl('/genre/movie/list', null));
     }
 
     complexeSearchForMovie(year: number, categories: [number], langs: [String], page: number) {
-        let myUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=d7fa07760d9dbe9ef1e9b01020d9da15&language=' + this.userLanguage + '&sort_by=popularity.desc&page=' + page;
-        myUrl += year ? '&primary_release_year=' + year : '';
-        myUrl += categories && categories.length ? '&with_genres=' + categories.toString() : '';
-        myUrl += langs && langs.length ? '&with_original_language=' + langs.toString() : '';
-        console.log(myUrl);
-        return this.http.get(myUrl);
+        return this.http.get(this.generateUrl('/discover/movie',
+            {
+                sort_by: 'popularity.desc',
+                page: page,
+                primary_release_year: year,
+                with_genres: categories ? categories.toString() : null,
+                with_original_language: langs ? langs.toString() : null
+            }
+        ));
+    }
+
+    private generateUrl(route: string, args) {
+        let res = [];
+        for (let i in args) {
+            if (args[i]) {
+                res.push(encodeURI(i) + '=' + encodeURI(args[i]).replace(/\&/g, '%26').replace(/\?/g, '%3F'));
+            }
+        }
+        return this.api.baseUrl + route + '?api_key=' + this.api.key + '&language=' + this.userLanguage + '&' + res.join('&');
     }
 
 }
