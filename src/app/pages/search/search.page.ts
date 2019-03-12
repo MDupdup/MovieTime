@@ -3,6 +3,7 @@ import {MoviesService} from '../../services/movies/movies.service';
 import {QRScanner} from '@ionic-native/qr-scanner/ngx';
 import {Movie} from '../../models/Movie';
 import {TranslateService} from '../../services/translate/translate.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-search',
@@ -21,7 +22,7 @@ export class SearchPage implements OnInit {
     searchForMovieSub;
     listMoviesInTheaters;
 
-    constructor(public mProvider: MoviesService, public qrScanner: QRScanner, public t: TranslateService) {
+    constructor(public router: Router, public mProvider: MoviesService, public qrScanner: QRScanner, public t: TranslateService) {
 
     }
 
@@ -79,6 +80,10 @@ export class SearchPage implements OnInit {
         } else {
             this.getMoviesInTheaters();
         }
+    }
+
+    public toQRCode() {
+        this.router.navigateByUrl("/qrcode");
     }
 
     ionViewWillLeave() {
