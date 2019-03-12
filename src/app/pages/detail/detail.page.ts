@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {Movie} from '../../models/Movie';
-import {AlertController} from '@ionic/angular';
-import {StorageService} from '../../services/storage/storage.service';
-import {TranslateService} from '../../services/translate/translate.service';
-import {MoviesService} from '../../services/movies/movies.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Movie } from '../../models/Movie';
+import { AlertController } from '@ionic/angular';
+import { StorageService } from '../../services/storage/storage.service';
+import { TranslateService } from '../../services/translate/translate.service';
+import { MoviesService } from '../../services/movies/movies.service';
 
 @Component({
     selector: 'app-detail',
     templateUrl: './detail.page.html',
     styleUrls: ['./detail.page.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class DetailPage implements OnInit {
 
@@ -18,9 +19,9 @@ export class DetailPage implements OnInit {
     getMovieByIdSub;
 
     constructor(public mProvider: MoviesService,
-                private alertPopup: AlertController,
-                private sProvider: StorageService,
-                public t: TranslateService) {
+        private alertPopup: AlertController,
+        private sProvider: StorageService,
+        public t: TranslateService) {
     }
 
     ngOnInit() {
@@ -63,6 +64,6 @@ export class DetailPage implements OnInit {
     }
 
     ionViewWillLeave() {
-        if(this.getMovieByIdSub) this.getMovieByIdSub.unsubscribe();
+        if (this.getMovieByIdSub) this.getMovieByIdSub.unsubscribe();
     }
 }

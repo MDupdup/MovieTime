@@ -86,3 +86,13 @@ $colors: (
         light: #f4f4f4,
         dark: #000000
 );
+
+// ion-toolbar, .toolbar-background {
+//   --background-color: map-get($colors, primary);
+//   --ion-color-base: transparent !important;
+// }
+
+.new-background-color{
+  --background: #ab1313;
+  --color: white;
+}

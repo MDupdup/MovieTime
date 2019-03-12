@@ -33,12 +33,25 @@ app-movie-item-list {
     }
     ion-button{
       margin-top: 10px;
+      font-size: 11px;
+      height: 30px;
     }
   }
 }
 
 app-movie-item-list ion-spinner * {
   stroke: map-get($colors, primary)!important;
+}
+
+//color rates movies
+.good {
+  color: green;
+}
+.average {
+  color: orange;
+}
+.bad {
+  color: red;
 }
 
 

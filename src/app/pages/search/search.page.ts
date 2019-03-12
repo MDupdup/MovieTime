@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MoviesService} from '../../services/movies/movies.service';
 import {QRScanner} from '@ionic-native/qr-scanner/ngx';
 import {Movie} from '../../models/Movie';
@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-search',
+    encapsulation: ViewEncapsulation.None,
     templateUrl: './search.page.html',
     styleUrls: ['./search.page.scss'],
 })

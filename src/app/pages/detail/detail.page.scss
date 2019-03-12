@@ -1,13 +1,13 @@
 //Item
-page-detail div[item-start] {
+app-detail div[item-start] {
   //min-height: calc(100% / 900 * 600);
   position: relative;
 }
-page-detail div[item-start] ion-img{
+app-detail div[item-start] ion-img{
   width: 100%;
   height: 100%;
 }
-page-detail div[item-start] ion-spinner{
+app-detail div[item-start] ion-spinner{
   position: absolute;
   left: calc(50% - 14px);
   top: calc(50% - 14px);
@@ -18,27 +18,32 @@ page-detail div[item-start] ion-spinner{
 }
 
 //Badges
-page-detail ion-badge {
+app-detail ion-badge {
   text-transform: capitalize;
   vertical-align: middle;
 }
 
 //Fav button
-page-detail .fav-button {
+app-detail .fav-button {
   position: absolute;
   bottom: -20px;
-  right: 20px;
-  padding: 0 1.1em;
+  right: 10px;
+  z-index: 999;
+}
+app-detail .button-nattive{
+  padding: 0 1em;
 }
 
+
+
 //Fix for content size
-page-detail .scroll-content {
+app-detail .scroll-content {
   margin-top: 56px;
   margin-bottom: 56px;
 }
 
 //QrCode
-page-detail .qr-container {
+app-detail .qr-container {
   max-width: 128px;
   margin: 16px auto;
 }
