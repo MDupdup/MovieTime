@@ -6,8 +6,8 @@ import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-movie-item-list',
-    encapsulation: ViewEncapsulation.None,
     templateUrl: './movie-item-list.component.html',
+    encapsulation: ViewEncapsulation.None,
     styleUrls: ['./movie-item-list.component.scss'],
 })
 export class MovieItemListComponent implements OnInit {
