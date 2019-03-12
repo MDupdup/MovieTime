@@ -2,19 +2,21 @@
     <div item-start>
         <img [src]="movie.posterPath" onError="src ='../assets/imgs/movie.png'">
     </div>
-    <h2 text-wrap>{{movie.title}}</h2>
-    <p><span
-            [ngClass]="{'good': movie.voteAvg >= 7, 'average': movie.voteAvg >= 3.5 && movie.voteAvg < 7, 'bad': movie.voteAvg < 3.5}">{{movie.voteAvg}}
-        /10</span>
-        • {{movie.getReleaseYear()}}</p>
-    <ion-button padding (click)="this.detail(movie.id)">
-        {{t.__('More information')}}
-        <ion-icon name="eye" slot="start"></ion-icon>
-    </ion-button>
-    <br>
-    <!-- TODO connect me -->
-    <ion-button padding (click)="favs.deleteMovieFromList(movie)" color="danger" *ngIf="fav">
-        {{t.__('Remove list')}}
-        <ion-icon name="star" slot="start"></ion-icon>
-    </ion-button>
+    <div class="content">
+        <h2 text-wrap>{{movie.title}}</h2>
+        <p><span
+                [ngClass]="{'good': movie.voteAvg >= 7, 'average': movie.voteAvg >= 3.5 && movie.voteAvg < 7, 'bad': movie.voteAvg < 3.5}">{{movie.voteAvg}}
+                /10</span>
+            • {{movie.getReleaseYear()}}</p>
+        <ion-button padding (click)="this.detail(movie.id)">
+            {{t.__('More information')}}
+            <ion-icon name="eye" slot="start"></ion-icon>
+        </ion-button>
+        <br>
+        <!-- TODO connect me -->
+        <ion-button padding (click)="favs.deleteMovieFromList(movie)" color="danger" *ngIf="fav">
+            {{t.__('Remove list')}}
+            <ion-icon name="star" slot="start"></ion-icon>
+        </ion-button>
+    </div>
 </ion-item>
