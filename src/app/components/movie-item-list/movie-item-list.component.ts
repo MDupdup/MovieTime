@@ -3,6 +3,7 @@ import {Movie} from '../../models/Movie';
 import {MoviesService} from '../../services/movies/movies.service';
 import {TranslateService} from '../../services/translate/translate.service';
 import {Router} from '@angular/router';
+import {StorageService} from '../../services/storage/storage.service';
 
 @Component({
     selector: 'app-movie-item-list',
@@ -15,7 +16,7 @@ export class MovieItemListComponent implements OnInit {
     @Input() movie: Movie;
     @Input() fav: boolean;
 
-    constructor(public mProvider: MoviesService, public t: TranslateService, public router: Router) {
+    constructor(public mProvider: MoviesService, sProvider: StorageService, public t: TranslateService, public router: Router) {
         this.movie = new Movie(0, 'Undefined', null, null, null, 0);
         this.fav = false;
     }
