@@ -22,6 +22,10 @@ export class FavoritesPage implements OnInit {
         this.sProvider.getFavList().then((x) => this.favMoviesList = x);
     }
 
+    /**
+     * Summons a popup asking the user if he wants to delete a given movie from his favorites.
+     * @param movie
+     */
     public async deleteMovieFromList(movie: Movie) {
         const alert = await this.alert.create({
             header: this.t.__('Are you sure about that?'),

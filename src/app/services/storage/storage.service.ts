@@ -12,12 +12,19 @@ export class StorageService {
     constructor(public nativeStorage: NativeStorage) {
     }
 
+    /**
+     * Setter to set the given favorites list as the user's favorites movie list
+     * @param movieList
+     */
     setFavList(movieList: Movie[]) {
         this.nativeStorage.setItem('favorites', {
             movies: movieList
         });
     }
 
+    /**
+     * Return the user's favorite movies list
+     */
     async getFavList() {
         await this.nativeStorage.getItem('favorites')
             .then(data => {
@@ -32,6 +39,10 @@ export class StorageService {
         return this.favList;
     }
 
+    /**
+     * Add given movie to the user's favorite movies list
+     * @param movie
+     */
     addMovieToList(movie: Movie) {
         this.favList.push(movie);
 
@@ -41,6 +52,10 @@ export class StorageService {
             .catch(err => console.error('Error setting the movie', movie.title, 'in the db! (', err, ')'));
     }
 
+    /**
+     * Delete movie with the given id from the user's favorite movies list
+     * @param id
+     */
     deleteMovieFromList(id: any) {
         const movieToDelete = this.favList.findIndex(x => x.id === id);
 
@@ -49,10 +64,18 @@ export class StorageService {
         this.setFavList(this.favList);
     }
 
+    /**
+     * Check whether given movie is already in the user's favorite movies list
+     * @param movie
+     */
     isMovieInDb(movie: Movie) {
         return this.favList.find(x => x.id === movie.id);
     }
 
+    /**
+     * Clear the user's favorite movies list
+     * @deprecated
+     */
     clearDB() {
         this.nativeStorage.clear();
     }

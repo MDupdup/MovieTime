@@ -22,6 +22,11 @@ export class TranslateService {
         this.trad = translations;
     }
 
+    /**
+     * Translate given string to the user device's main language
+     * @param str
+     * @return translated sentence
+     */
     public __(str: String) {
         const res = this.trad.find((x) => {
             return x.key === str;

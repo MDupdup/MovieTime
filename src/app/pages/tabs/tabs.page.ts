@@ -13,6 +13,9 @@ export class TabsPage {
     disconnectSub;
     connectSub;
 
+    /**
+     * Handling network connection (make a toast spawn, informing the user that network is available or not)
+     */
     constructor(public t: TranslateService, public network: Network, public toastCtrl: ToastController) {
         this.disconnectSub = this.network.onDisconnect().subscribe(() => {
             this.toastCtrl.create({

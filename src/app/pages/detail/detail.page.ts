@@ -32,6 +32,10 @@ export class DetailPage implements OnInit {
         });
     }
 
+    /**
+     * Add a given movie to the user's favorite movies list
+     * @param movie
+     */
     public async addToFavorites(movie: Movie) {
 
         if (this.sProvider.isMovieInDb(movie)) {

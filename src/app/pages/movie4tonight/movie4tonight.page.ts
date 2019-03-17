@@ -48,6 +48,9 @@ export class Movie4tonightPage implements OnInit {
         this.langs = eachLangs;
     }
 
+    /**
+     * Search for movies
+     */
     public searchMovies() {
         this.searching = true;
 
@@ -64,6 +67,9 @@ export class Movie4tonightPage implements OnInit {
             });
     }
 
+    /**
+     * Get more movies
+     */
     public getMore() {
         this.page++;
         this.searchMovies();

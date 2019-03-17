@@ -21,6 +21,10 @@ export class MovieItemListComponent implements OnInit {
         this.fav = false;
     }
 
+    /**
+     * Set id to send user to corresponding movie's Detail page
+     * @param id
+     */
     detail(id: number) {
         this.mProvider.setMovieId(id);
         this.router.navigateByUrl("/detail");

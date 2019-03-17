@@ -32,6 +32,10 @@ export class SearchPage implements OnInit {
         this.searching = true;
     }
 
+    /**
+     * When user enters characters in the search bar, call either getMoviesInTheaters() or getMovieBySearch()
+     * @param searchValue
+     */
     public onSearch(searchValue: string) {
         this.searching = true;
         // if field is same as before, exit the function (optimization purpose)
@@ -50,6 +54,9 @@ export class SearchPage implements OnInit {
         }
     }
 
+    /**
+     * Get a list of movies corresponding to the user search
+     */
     public getMovieBySearch() {
         this.searchForMovieSub = this.mProvider.searchForMovie(this.localSearch, this.page).subscribe(response => {
             const newMovies = response['results'].map(movie =>
@@ -61,6 +68,9 @@ export class SearchPage implements OnInit {
         });
     }
 
+    /**
+     * Get current movies in theaters, when nothing is typed in the search bar yet
+     */
     private getMoviesInTheaters() {
         this.searching = true;
 
@@ -74,6 +84,9 @@ export class SearchPage implements OnInit {
         });
     }
 
+    /**
+     * GetMore button at bottom of the movie list, to load more movies
+     */
     public getMore() {
         this.page++;
         if (this.localSearch) {
