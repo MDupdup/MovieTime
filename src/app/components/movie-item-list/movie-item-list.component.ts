@@ -16,7 +16,7 @@ export class MovieItemListComponent implements OnInit {
     @Input() movie: Movie;
     @Input() fav: boolean;
 
-    constructor(public mProvider: MoviesService, sProvider: StorageService, public t: TranslateService, public router: Router) {
+    constructor(public mProvider: MoviesService, public sProvider: StorageService, public t: TranslateService, public router: Router) {
         this.movie = new Movie(0, 'Undefined', null, null, null, 0);
         this.fav = false;
     }
