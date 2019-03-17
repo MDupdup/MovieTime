@@ -13,7 +13,7 @@ import { TranslateService } from '../../services/translate/translate.service';
 export class Movie4tonightPage implements OnInit {
 
     searching;
-    movies = ["default"];
+    movies;
     categories;
     category = null;
     years = [0];
