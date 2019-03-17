@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Movie} from '../../models/Movie';
-import {Category} from '../../models/Category';
-import {eachLangs} from '../../../assets/langs';
-import {MoviesService} from '../../services/movies/movies.service';
-import {TranslateService} from '../../services/translate/translate.service';
+import { Component, OnInit } from '@angular/core';
+import { Movie } from '../../models/Movie';
+import { Category } from '../../models/Category';
+import { eachLangs } from '../../../assets/langs';
+import { MoviesService } from '../../services/movies/movies.service';
+import { TranslateService } from '../../services/translate/translate.service';
 
 @Component({
     selector: 'app-movie4tonight',
@@ -13,10 +13,13 @@ import {TranslateService} from '../../services/translate/translate.service';
 export class Movie4tonightPage implements OnInit {
 
     searching;
-    movies = [];
+    movies = ["default"];
     categories;
-    years = [];
-    langs;
+    category = null;
+    years = [0];
+    year = null
+    langs = [{ 'code': "string", 'name': "string" }];
+    lang = null
     selectedCategories;
     selectedYear;
     selectedLang;
@@ -52,13 +55,13 @@ export class Movie4tonightPage implements OnInit {
             this.selectedCategories,
             this.selectedLang,
             this.page).subscribe(response => {
-            const newMovies = response['results'].map(movie =>
-                new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
-            );
-            this.noMoreMovies = newMovies.length ? false : true;
-            this.movies = this.movies.concat(newMovies);
-            this.searching = false;
-        });
+                const newMovies = response['results'].map(movie =>
+                    new Movie(movie.id, movie.title, movie.overview, movie.poster_path, movie.release_date, movie.vote_average)
+                );
+                this.noMoreMovies = newMovies.length ? false : true;
+                this.movies = this.movies.concat(newMovies);
+                this.searching = false;
+            });
     }
 
     public getMore() {

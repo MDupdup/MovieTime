@@ -55,7 +55,7 @@
                 {{movie.overview}}
             </p>
             <div class="qr-container">
-                <qrcode [qrdata]="movie.id" [size]="128" [level]="'M'"></qrcode>
+                <qrcode qrdata="{{movie._id}}" [size]="128" [level]="'M'"></qrcode>
             </div>
 
         </ion-card-content>

@@ -32,15 +32,16 @@
     "@ionic/angular": "^4.1.0",
     "angularx-qrcode": "^1.5.3",
     "cordova-android": "7.1.4",
+    "cordova-plugin-android-permissions": "1.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
-    "cordova-plugin-globalization": "1.11.0",
+    "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-headercolor": "1.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^3.1.2",
-    "cordova-plugin-nativestorage": "2.3.2",
-    "cordova-plugin-network-information": "2.0.1",
-    "cordova-plugin-qrscanner": "2.6.0",
+    "cordova-plugin-nativestorage": "^2.3.2",
+    "cordova-plugin-network-information": "^2.0.1",
+    "cordova-plugin-qrscanner": "^2.6.0",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -90,7 +91,8 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-headercolor": {}
+      "cordova-plugin-headercolor": {},
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "android"

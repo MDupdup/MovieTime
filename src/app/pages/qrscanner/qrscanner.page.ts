@@ -1,39 +1,46 @@
-import {Component, OnInit} from '@angular/core';
-import {QRScannerStatus} from '@ionic-native/qr-scanner';
-import {QRScanner} from '@ionic-native/qr-scanner/ngx';
-import {NavController, NavParams} from '@ionic/angular';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import {MoviesService} from '../../services/movies/movies.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-qrscanner',
     templateUrl: './qrscanner.page.html',
+    encapsulation: ViewEncapsulation.None,
     styleUrls: ['./qrscanner.page.scss'],
 })
 export class QrscannerPage implements OnInit {
-
+    
     scanSub;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public mProvider: MoviesService, public qrScanner: QRScanner) {
+    constructor(public router: Router, public mProvider: MoviesService, public qrScanner: QRScanner) {
     }
 
-    ionViewDidLoad() {
+    ngOnInit(): void {
+    }
+
+    ionViewWillEnter() {
+        console.log("hello there")
         this.qrScanner.prepare()
             .then((status: QRScannerStatus) => {
                 if (status.authorized) {
+                    console.log("something")
                     this.qrScanner.show();
                     window.document.querySelector('ion-app').classList.add('cameraView');
 
                     this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
-                        this.navCtrl.pop();
-                        this.navCtrl.navigateRoot('/detail');
+                        console.log(text)
+                        this.router.navigateByUrl('/detail');
                         this.mProvider.setMovieId(parseInt(text));
 
                         this.qrScanner.hide();
                         this.scanSub.unsubscribe();
                     });
                 } else if (status.denied) {
+                    console.log(status)
                     // camera permission was permanently denied
                 } else {
+                    console.log(status)
                     // permission was denied, but not permanently. You can ask for permission again at a later time.
                 }
             })
@@ -46,8 +53,4 @@ export class QrscannerPage implements OnInit {
         }
         window.document.querySelector('ion-app').classList.remove('cameraView');
     }
-
-    ngOnInit(): void {
-    }
-
 }

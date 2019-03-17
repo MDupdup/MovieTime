@@ -11,7 +11,7 @@
     <!-- SearchBar -->
     <div class="search-content">
         <ion-searchbar (input)="onSearch($event.target.value)" [placeholder]="t.__('Search for')"></ion-searchbar>
-        <ion-button padding (click)="toQRCode()">
+        <ion-button padding href="/qrscanner">
             <ion-icon name="qr-scanner"></ion-icon>
         </ion-button>
     </div>
